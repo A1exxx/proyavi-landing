@@ -1,35 +1,40 @@
 /* ============================================
-   Design Tokens — Прояви  v3 (Vocal Studio · Light Editorial)
-   Молочный premium-minimalism · Instrument Serif · много voor
+   Design Tokens — Прояви  v4 (Premium Creative Dark)
+   Warm charcoal + cream + terracotta · Syne + Inter
    ============================================ */
 
 :root {
-  /* -------- COLORS — WARM MILK PALETTE -------- */
-  --color-bg:           rgb(250 247 242);
-  --color-bg:           oklch(0.974 0.012 80);          /* warm milk */
-  --color-bg-soft:      rgb(239 233 220);
-  --color-bg-soft:      oklch(0.932 0.025 80);          /* deeper cream */
-  --color-bg-darker:    rgb(225 218 204);
-  --color-bg-darker:    oklch(0.880 0.028 80);          /* tinted edge */
+  /* -------- COLORS — WARM CHARCOAL + RUST -------- */
+  --color-bg:           rgb(20 17 14);
+  --color-bg:           oklch(0.140 0.008 60);          /* deep warm charcoal */
+  --color-bg-elev:      rgb(28 24 20);
+  --color-bg-elev:      oklch(0.185 0.010 55);          /* elevated surface */
+  --color-bg-card:      rgb(36 31 27);
+  --color-bg-card:      oklch(0.225 0.012 55);          /* card */
+  --color-bg-warm:      rgb(245 239 227);
+  --color-bg-warm:      oklch(0.948 0.025 80);          /* cream invert */
 
-  --color-text:         rgb(28 26 23);
-  --color-text:         oklch(0.218 0.008 60);          /* warm near-black */
-  --color-text-strong:  rgb(15 14 12);
-  --color-text-strong:  oklch(0.140 0.005 60);
-  --color-muted:        rgb(110 100 88);
-  --color-muted:        oklch(0.508 0.020 60);
-  --color-dim:          rgb(155 145 130);
-  --color-dim:          oklch(0.635 0.022 70);
-  --color-line:         rgb(218 210 196);
-  --color-line:         oklch(0.860 0.020 75);
-  --color-line-soft:    rgb(232 226 213);
-  --color-line-soft:    oklch(0.905 0.018 75);
+  /* Text */
+  --color-text:         rgb(232 224 210);
+  --color-text:         oklch(0.890 0.020 75);          /* cream */
+  --color-text-strong:  rgb(247 240 226);
+  --color-text-strong:  oklch(0.948 0.022 80);
+  --color-muted:        rgb(155 142 124);
+  --color-muted:        oklch(0.635 0.025 70);
+  --color-dim:          rgb(108 96 82);
+  --color-dim:          oklch(0.475 0.020 65);
+  --color-line:         rgb(56 48 42);
+  --color-line:         oklch(0.320 0.012 60);
+  --color-line-soft:    rgb(42 36 32);
+  --color-line-soft:    oklch(0.252 0.012 55);
 
-  /* SINGLE ACCENT — deep warm wine */
-  --color-accent:       rgb(92 42 58);
-  --color-accent:       oklch(0.328 0.080 8);
-  --color-accent-soft:  rgb(126 64 80);
-  --color-accent-soft:  oklch(0.420 0.085 8);
+  /* SINGLE WARM ACCENT — terracotta */
+  --color-accent:       rgb(201 98 74);
+  --color-accent:       oklch(0.620 0.135 38);          /* terracotta */
+  --color-accent-soft:  rgb(217 119 87);
+  --color-accent-soft:  oklch(0.680 0.140 38);          /* warmer terracotta */
+  --color-accent-deep:  rgb(159 70 50);
+  --color-accent-deep:  oklch(0.510 0.135 35);          /* deeper rust */
 
   /* Aliases */
   --color-cta:                  var(--color-text-strong);
@@ -39,33 +44,34 @@
   --color-link-hover:           var(--color-accent);
 
   /* -------- TYPOGRAPHY ---------------------- */
-  --font-display:  "Instrument Serif", "Times New Roman", "Iowan Old Style", Georgia, serif;
+  --font-display:  "Syne", "Inter Display", "Helvetica Neue", system-ui, sans-serif;
+  --font-serif:    "Newsreader", "Iowan Old Style", Georgia, serif;
   --font-body:     "Inter", "Helvetica Neue", system-ui, sans-serif;
 
-  /* Fluid type scale — generous, editorial */
-  --fs-monster: clamp(5rem, 18vw, 16rem);     /* one-word headlines */
-  --fs-hero:    clamp(4rem, 12vw, 10.5rem);
-  --fs-h1:      clamp(3rem, 7vw, 6rem);
-  --fs-h2:      clamp(2.5rem, 5vw, 4.5rem);
-  --fs-h3:      clamp(1.625rem, 2.5vw, 2.25rem);
-  --fs-lead:    clamp(1.125rem, 1.4vw, 1.375rem);
+  /* Fluid type scale — premium creative */
+  --fs-monster: clamp(5rem, 18vw, 16rem);
+  --fs-hero:    clamp(3.5rem, 11vw, 9.5rem);
+  --fs-h1:      clamp(2.75rem, 6.5vw, 5.5rem);
+  --fs-h2:      clamp(2.25rem, 4.5vw, 4rem);
+  --fs-h3:      clamp(1.5rem, 2.3vw, 2rem);
+  --fs-lead:    clamp(1.0625rem, 1.4vw, 1.3125rem);
   --fs-body:    1rem;
   --fs-small:   0.875rem;
   --fs-eyebrow: 0.6875rem;
 
   /* Line heights */
-  --lh-tight:   0.92;
-  --lh-snug:    1.05;
+  --lh-tight:   0.94;
+  --lh-snug:    1.08;
   --lh-normal:  1.5;
-  --lh-relaxed: 1.7;
+  --lh-relaxed: 1.65;
 
   /* Letter spacing */
-  --ls-mega:     -0.045em;
+  --ls-mega:     -0.04em;
   --ls-tight:    -0.025em;
-  --ls-snug:     -0.012em;
-  --ls-normal:   0;
-  --ls-wide:     0.06em;
-  --ls-wider:    0.18em;
+  --ls-snug:     -0.015em;
+  --ls-normal:    0;
+  --ls-wide:      0.04em;
+  --ls-wider:     0.16em;
 
   /* -------- SPACING — generous editorial --- */
   --space-3xs:    4px;
@@ -78,32 +84,33 @@
   --space-2xl:  128px;
   --space-3xl:  200px;
   --space-4xl:  320px;
-  --space-section: clamp(120px, 18vw, 240px);
+  --space-section: clamp(120px, 16vw, 220px);
 
   --container-narrow:  680px;
-  --container-base:   1080px;
-  --container-wide:   1320px;
-  --container-full:   1560px;
+  --container-base:   1100px;
+  --container-wide:   1380px;
+  --container-full:   1640px;
 
-  /* -------- RADII — almost none ---------- */
+  /* -------- RADII ---------- */
   --radius-sm:    4px;
   --radius-md:    8px;
   --radius-lg:   16px;
   --radius-pill: 999px;
 
-  /* -------- SHADOWS — very subtle -------- */
-  --shadow-sm:    0 1px 2px rgb(28 26 23 / 0.04);
-  --shadow-md:    0 8px 32px rgb(28 26 23 / 0.06);
-  --shadow-lg:    0 24px 80px rgb(28 26 23 / 0.10);
+  /* -------- SHADOWS -------- */
+  --shadow-sm:    0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md:    0 8px 32px rgb(0 0 0 / 0.5);
+  --shadow-lg:    0 30px 80px rgb(0 0 0 / 0.5);
+  --shadow-glow:  0 0 120px color-mix(in oklch, var(--color-accent) 40%, transparent);
 
-  /* -------- EASING — slow, premium ------ */
+  /* -------- EASING --------- */
   --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
 
-  --dur-fast:     280ms;
-  --dur-base:     520ms;
-  --dur-slow:     900ms;
-  --dur-reveal:  1200ms;
+  --dur-fast:     260ms;
+  --dur-base:     460ms;
+  --dur-slow:     780ms;
+  --dur-reveal:  1000ms;
 
   /* -------- Z-INDEX --------------------- */
   --z-base:     1;
@@ -111,7 +118,7 @@
   --z-sticky: 100;
   --z-modal:  1000;
 
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {

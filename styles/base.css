@@ -1,5 +1,5 @@
 /* ============================================
-   Base — Vocal Studio · light editorial
+   Base — Premium Creative Dark · v4
    ============================================ */
 
 *,
@@ -34,8 +34,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01" on, "cv11" on, "calt" on;
   overflow-x: hidden;
+}
+
+/* Subtle grain for film texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
 }
 
 img, picture, svg, video {
@@ -78,22 +89,26 @@ ul, ol { list-style: none; }
 
 ::-webkit-scrollbar { width: 0; }
 
-/* Typography defaults */
+/* Typography defaults — Syne for display, Inter for body */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
   text-wrap: balance;
   color: var(--color-text-strong);
 }
 
-h1 { font-size: var(--fs-h1); }
-h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); font-weight: 400; }
+h1 { font-size: var(--fs-h1); font-weight: 500; }
+h2 { font-size: var(--fs-h2); font-weight: 500; }
+h3 { font-size: var(--fs-h3); font-weight: 500; }
 
+/* italic accent — uses Newsreader serif italic */
 em {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent-soft);
 }
 
 p {
@@ -107,7 +122,7 @@ p.lead { font-size: var(--fs-lead); color: var(--color-text); }
 
 strong { font-weight: 500; color: var(--color-text-strong); }
 
-/* Eyebrow — single thin line + uppercase mono-cap */
+/* Eyebrow — single thin line + uppercase */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -117,65 +132,50 @@ strong { font-weight: 500; color: var(--color-text-strong); }
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent);
 }
 
 .eyebrow::before {
   content: "";
   display: inline-block;
-  width: 28px;
+  width: 32px;
   height: 1px;
-  background: var(--color-text-strong);
+  background: var(--color-accent);
 }
 
 /* Containers */
 .container {
   width: min(100% - 2 * var(--space-md), var(--container-base));
   margin-inline: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .container-narrow {
   width: min(100% - 2 * var(--space-md), var(--container-narrow));
   margin-inline: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .container-wide {
   width: min(100% - 2 * var(--space-md), var(--container-wide));
   margin-inline: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .container-full {
   width: min(100% - 2 * var(--space-md), var(--container-full));
   margin-inline: auto;
+  position: relative;
+  z-index: 2;
 }
 
 /* Section spacing */
 section {
   padding-block: var(--space-section);
   position: relative;
-}
-
-/* Placeholder marker — minimal */
-[data-placeholder="true"] {
-  position: relative;
-}
-
-[data-placeholder="true"]::after {
-  content: "placeholder";
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-family: var(--font-body);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  padding: 4px 10px;
-  background: var(--color-bg);
-  color: var(--color-muted);
-  border: 1px solid var(--color-line);
-  pointer-events: none;
-  z-index: 5;
 }
 
 .sr-only {

@@ -1,14 +1,14 @@
 /* ============================================
-   Components — Vocal Studio · v3 (light editorial)
+   Components — Premium Creative Dark · v4
    ============================================ */
 
-/* ============== BUTTONS — quiet & premium ============== */
+/* ============== BUTTONS ============== */
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 20px 36px;
+  padding: 22px 36px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 500;
@@ -17,20 +17,36 @@
   border-radius: var(--radius-pill);
   cursor: pointer;
   text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   transition:
-    background var(--dur-base) var(--ease-out),
     color var(--dur-base) var(--ease-out),
-    border-color var(--dur-base) var(--ease-out);
+    transform var(--dur-fast) var(--ease-out);
 }
 
-/* Primary — dark pill on light bg, accent on hover */
+.btn:active { transform: scale(0.97); }
+
+/* Primary — cream pill, terracotta sweep on hover */
 .btn-primary {
   background: var(--color-text-strong);
   color: var(--color-bg);
 }
 
-.btn-primary:hover {
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--color-accent);
+  transform: translateY(101%);
+  transition: transform var(--dur-base) var(--ease-out);
+  z-index: -1;
+}
+
+.btn-primary:hover::before { transform: translateY(0); }
+
+.btn-primary:hover {
+  color: var(--color-text-strong);
 }
 
 .btn-primary .arrow {
@@ -39,25 +55,25 @@
 }
 
 .btn-primary:hover .arrow {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
-/* Secondary — minimal underline */
+/* Secondary — outline */
 .btn-secondary {
   background: transparent;
-  color: var(--color-text-strong);
-  border: 1px solid var(--color-text-strong);
+  color: var(--color-text);
+  border: 1px solid color-mix(in oklch, var(--color-text) 30%, transparent);
 }
 
 .btn-secondary:hover {
-  background: var(--color-text-strong);
-  color: var(--color-bg);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
-/* Ghost — text only */
+/* Ghost */
 .btn-ghost {
   background: transparent;
-  color: var(--color-text-strong);
+  color: var(--color-text);
   padding: 12px 18px;
   font-size: 0.875rem;
 }
@@ -66,26 +82,26 @@
 
 /* Large variant */
 .btn-lg {
-  padding: 24px 40px;
+  padding: 26px 42px;
   font-size: 1rem;
 }
 
-/* ============== PAIN-CARD — minimal type-driven ============== */
+/* ============== PAIN-CARD — large type, line divider ============== */
 
 .pain-card {
   padding: var(--space-lg) 0;
   border-top: 1px solid var(--color-line);
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: var(--ls-tight);
-  color: var(--color-text-strong);
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 80px 1fr;
   gap: var(--space-lg);
   align-items: baseline;
-  transition: padding var(--dur-base) var(--ease-out);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-strong);
+  transition: padding var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
 .pain-card:last-child {
@@ -97,17 +113,18 @@
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: var(--ls-wider);
-  color: var(--color-muted);
+  color: var(--color-accent);
   text-transform: uppercase;
   align-self: start;
-  padding-top: 8px;
+  padding-top: 14px;
 }
 
 .pain-card:hover {
   padding-left: var(--space-md);
+  color: var(--color-accent-soft);
 }
 
-/* ============== DIRECTION-CARD — editorial spread ============== */
+/* ============== DIRECTION-CARD ============== */
 
 .direction-card {
   padding: var(--space-lg) 0;
@@ -138,22 +155,25 @@
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: var(--ls-wider);
-  color: var(--color-muted);
+  color: var(--color-accent);
   text-transform: uppercase;
   padding-top: 12px;
 }
 
 .direction-card h3 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 500;
   line-height: 1;
   letter-spacing: var(--ls-tight);
   color: var(--color-text-strong);
 }
 
 .direction-card h3 em {
+  font-family: var(--font-serif);
   font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent-soft);
 }
 
 .direction-card p {
@@ -164,12 +184,12 @@
   padding-top: 16px;
 }
 
-/* ============== PERSON-CARD — documentary ============== */
+/* ============== PERSON-CARD with real photos ============== */
 
 .person-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .person-photo {
@@ -177,16 +197,30 @@
   border-radius: 2px;
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(120% 100% at 30% 25%, color-mix(in oklch, var(--color-bg-darker) 100%, transparent), transparent 70%),
-    radial-gradient(100% 80% at 70% 80%, color-mix(in oklch, var(--color-text) 25%, var(--color-bg-soft)), transparent 65%),
-    var(--color-bg-soft);
-  filter: grayscale(1) contrast(1.05);
-  transition: filter var(--dur-slow) var(--ease-out);
+  background: var(--color-bg-card);
+  isolation: isolate;
 }
 
-.person-card:hover .person-photo {
-  filter: grayscale(0.6) contrast(1.05);
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
+  filter: saturate(0.9);
+}
+
+.person-card:hover .person-photo img {
+  transform: scale(1.03);
+  filter: saturate(1.05);
+}
+
+.person-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgb(20 17 14 / 0.6));
+  pointer-events: none;
+  z-index: 1;
 }
 
 .person-meta {
@@ -200,13 +234,13 @@
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent);
 }
 
 .person-name {
   font-family: var(--font-display);
-  font-size: 1.625rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: var(--color-text-strong);
   letter-spacing: var(--ls-snug);
   line-height: 1.05;
@@ -223,21 +257,19 @@
 .form {
   display: grid;
   gap: var(--space-lg);
-  width: min(100%, 480px);
+  width: min(100%, 520px);
   margin-inline: auto;
 }
 
 .field {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   border-bottom: 1px solid var(--color-line);
   padding-bottom: 16px;
   transition: border-color var(--dur-base) var(--ease-out);
 }
 
-.field:focus-within {
-  border-bottom-color: var(--color-text-strong);
-}
+.field:focus-within { border-bottom-color: var(--color-accent); }
 
 .field-label {
   font-family: var(--font-body);
@@ -245,7 +277,7 @@
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent);
 }
 
 .field input,
@@ -261,7 +293,7 @@
 
 .field textarea {
   resize: vertical;
-  min-height: 60px;
+  min-height: 64px;
   line-height: 1.5;
 }
 
@@ -272,11 +304,9 @@
 }
 
 .field input:focus,
-.field textarea:focus {
-  outline: none;
-}
+.field textarea:focus { outline: none; }
 
-/* Checkbox — minimal square */
+/* Checkbox */
 .checkbox-field {
   display: flex;
   align-items: flex-start;
@@ -290,8 +320,8 @@
 .checkbox-field input[type="checkbox"] {
   appearance: none;
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: 1px solid var(--color-text-strong);
   background: transparent;
   display: grid;
@@ -302,12 +332,13 @@
 }
 
 .checkbox-field input[type="checkbox"]:checked {
-  background: var(--color-text-strong);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .checkbox-field input[type="checkbox"]:checked::before {
   content: "";
-  width: 9px;
+  width: 10px;
   height: 5px;
   border-left: 1.5px solid var(--color-bg);
   border-bottom: 1.5px solid var(--color-bg);
@@ -332,7 +363,7 @@
   margin-inline: auto;
 }
 
-/* ============== FAQ — editorial ============== */
+/* ============== FAQ ============== */
 
 .faq-item {
   border-bottom: 1px solid var(--color-line);
@@ -344,7 +375,7 @@
   cursor: pointer;
   font-family: var(--font-display);
   font-size: clamp(1.375rem, 2vw, 1.875rem);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: var(--ls-snug);
   line-height: 1.2;
   display: flex;
@@ -361,7 +392,7 @@
   font-family: var(--font-body);
   font-size: 1.25rem;
   font-weight: 300;
-  color: var(--color-muted);
+  color: var(--color-accent);
   transition: transform var(--dur-base) var(--ease-out);
   flex-shrink: 0;
 }
@@ -383,4 +414,37 @@
 @keyframes faq-reveal {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============== CHIP ============== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklch, var(--color-accent) 15%, transparent);
+  color: var(--color-accent-soft);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+  animation: chip-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes chip-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.4); }
 }

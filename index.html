@@ -3,20 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#FAF7F2">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#14110E">
 
   <title>Прояви — пространство для проявления через голос</title>
-  <meta name="description" content="6–8 недель работы с командой музыкантов, психологов и практиков. Раскрытие голоса, тела и проявленности. Начни с бесплатной диагностики.">
+  <meta name="description" content="6–8 недель работы с командой музыкантов, психологов и практиков. Раскрытие голоса, тела и проявленности.">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Прояви — раскрой свой голос, раскрой себя">
   <meta property="og:description" content="Не курс вокала. Практика свободного голоса.">
   <meta property="og:locale" content="ru_RU">
+  <meta property="og:image" content="assets/images/hero-ambient.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Прояви — раскрой свой голос, раскрой себя">
+  <meta name="twitter:description" content="Не курс вокала. Практика свободного голоса.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,300..600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
@@ -26,14 +31,17 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23FAF7F2'/%3E%3Ctext x='50' y='68' font-family='Times' font-size='64' fill='%231C1A17' text-anchor='middle' font-style='italic'%3EП%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314110E'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23C9624A'/%3E%3C/svg%3E">
 </head>
 <body>
 
   <!-- ====================== NAV ====================== -->
   <nav class="site-nav" aria-label="Главная навигация">
     <div class="nav-inner">
-      <a href="#top" class="nav-logo">Прояви</a>
+      <a href="#top" class="nav-logo">
+        <span class="nav-logo-mark" aria-hidden="true"></span>
+        Прояви
+      </a>
       <ul class="nav-links">
         <li><a href="#manifest">О подходе</a></li>
         <li><a href="#directions">Направления</a></li>
@@ -49,7 +57,15 @@
 
     <!-- ====================== HERO ====================== -->
     <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="assets/images/hero-ambient.webp" alt="" loading="eager" fetchpriority="high">
+      </div>
+
       <div class="hero-inner" data-reveal>
+        <span class="chip hero-chip">
+          <span class="chip-dot"></span>
+          Бесплатная диагностика · 15 минут
+        </span>
         <h1 id="hero-title" class="hero-title">
           Раскрой<br>свой <em>голос</em> —<br>раскрой <em>себя</em>
         </h1>
@@ -60,14 +76,14 @@
           <strong>Прояви</strong> · пространство для проявления через голос. 6–8 недель индивидуальной работы с командой музыкантов, психологов и практиков.
         </p>
         <p class="hero-subtitle">
-          Не курс вокала — практика свободного голоса как канал к себе.
+          Не курс вокала — практика свободного голоса как канал к&nbsp;себе.
         </p>
         <div class="hero-cta-group">
           <a href="#form" class="btn btn-primary">
-            <span>Бесплатная диагностика</span>
+            <span>Записаться на диагностику</span>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <p class="hero-micro">15 минут · с куратором</p>
+          <p class="hero-micro">Бесплатно · с куратором</p>
         </div>
       </div>
     </section>
@@ -127,7 +143,7 @@
           <p class="lead">Если хоть одно «да» — этот текст про тебя. Это не «недостатки характера». Это голосовые и телесные блоки — они снимаются. Системно.</p>
         </div>
 
-        <div class="pains-list" data-reveal-stagger>
+        <div data-reveal-stagger>
           <div class="pain-card">
             <span class="pain-card-num">01</span>
             <span>Голос звучит не так, как ты слышишь его внутри</span>
@@ -168,7 +184,7 @@
           <article class="direction-card">
             <span class="direction-num">01 / основной</span>
             <h3><em>Вокал</em></h3>
-            <p>Вокальная позиция, опора, прогрев, высокие ноты, бэлт, микст, субтон, дикция. Индивидуально и в малых группах. Основа маршрута.</p>
+            <p>Вокальная позиция, опора, прогрев, высокие ноты, бэлт, микст, субтон, дикция. Индивидуально и в малых группах.</p>
           </article>
 
           <article class="direction-card">
@@ -197,7 +213,7 @@
 
           <article class="direction-card">
             <span class="direction-num">06 / финал</span>
-            <h3><em>Запись своей песни</em></h3>
+            <h3><em>Запись песни</em></h3>
             <p>Для тех, кто пройдёт путь — продакшн в студии: аранжировка, запись, мастеринг. От первой ноты до релиза.</p>
           </article>
         </div>
@@ -234,56 +250,68 @@
         </div>
 
         <div class="team-grid" data-reveal-stagger>
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-1-musician.webp" alt="Музыкант" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Музыкант · вокал</span>
-              <h3 class="person-name">Имя музыканта</h3>
-              <p class="person-bio">Регалии: где играл, с кем выступал, записанные альбомы, проекты.</p>
+              <h3 class="person-name">[Имя музыканта]</h3>
+              <p class="person-bio">[Регалии: где играл, с кем выступал, записанные альбомы]</p>
             </div>
           </article>
 
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-2-psychologist.webp" alt="Психолог" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Психолог</span>
-              <h3 class="person-name">Имя психолога</h3>
+              <h3 class="person-name">[Имя психолога]</h3>
               <p class="person-bio">Специализация: самовыражение, страх сцены, работа с границами.</p>
             </div>
           </article>
 
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-3-somatic.webp" alt="Практик" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Практик · соматика</span>
-              <h3 class="person-name">Имя практика</h3>
+              <h3 class="person-name">[Имя практика]</h3>
               <p class="person-bio">Телесные практики, дыхание, голосовые медитации, освобождение зажимов.</p>
             </div>
           </article>
 
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-4-speech.webp" alt="Куратор речи" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Куратор · речь</span>
-              <h3 class="person-name">Имя куратора</h3>
+              <h3 class="person-name">[Имя куратора]</h3>
               <p class="person-bio">Опыт театра, медиа, публичных выступлений, дикторской работы.</p>
             </div>
           </article>
 
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-5-camera.webp" alt="Куратор камеры" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Куратор · камера</span>
-              <h3 class="person-name">Имя куратора</h3>
+              <h3 class="person-name">[Имя куратора]</h3>
               <p class="person-bio">Опыт видеопродакшна, блогинга, работы перед камерой.</p>
             </div>
           </article>
 
-          <article class="person-card" data-placeholder="true">
-            <div class="person-photo"></div>
+          <article class="person-card">
+            <div class="person-photo">
+              <img src="assets/images/team-6-studio.webp" alt="Студия" loading="lazy">
+            </div>
             <div class="person-meta">
               <span class="person-role">Студия · запись</span>
-              <h3 class="person-name">Название студии</h3>
+              <h3 class="person-name">[Название студии]</h3>
               <p class="person-bio">Продакшн, аранжировка, запись, мастеринг — для тех, кто хочет записать свою песню.</p>
             </div>
           </article>
@@ -334,10 +362,10 @@
 
         <div class="cases-grid" data-reveal-stagger>
 
-          <article class="case-card" data-placeholder="true">
+          <article class="case-card">
             <div class="case-photo"></div>
             <p class="case-quote">Раньше я говорила тихо и быстро, чтобы скорее замолчать. Сейчас я выступаю и веду свой канал — и впервые слышу себя.</p>
-            <p class="case-meta">Имя · 32 · продакт-менеджер</p>
+            <p class="case-meta">[Имя] · 32 · продакт-менеджер</p>
             <table class="case-table">
               <tr><td>Свобода голоса</td><td>2 → 5 <span class="delta">+3</span></td></tr>
               <tr><td>Свобода тела</td><td>3 → 5 <span class="delta">+2</span></td></tr>
@@ -348,10 +376,10 @@
             </table>
           </article>
 
-          <article class="case-card" data-placeholder="true">
+          <article class="case-card">
             <div class="case-photo"></div>
             <p class="case-quote">Я думал — мне нужны уроки вокала. Оказалось, мне нужны были и психолог, и практик, и педагог. Сейчас записал свою песню.</p>
-            <p class="case-meta">Имя · 38 · предприниматель</p>
+            <p class="case-meta">[Имя] · 38 · предприниматель</p>
             <table class="case-table">
               <tr><td>Свобода голоса</td><td>1 → 4 <span class="delta">+3</span></td></tr>
               <tr><td>Свобода тела</td><td>2 → 4 <span class="delta">+2</span></td></tr>
@@ -362,10 +390,10 @@
             </table>
           </article>
 
-          <article class="case-card" data-placeholder="true">
+          <article class="case-card">
             <div class="case-photo"></div>
             <p class="case-quote">Камера меня парализовывала. Сейчас я веду блог 4 раза в неделю и понимаю — у меня просто не было голоса.</p>
-            <p class="case-meta">Имя · 27 · фрилансер</p>
+            <p class="case-meta">[Имя] · 27 · фрилансер</p>
             <table class="case-table">
               <tr><td>Свобода голоса</td><td>2 → 5 <span class="delta">+3</span></td></tr>
               <tr><td>Свобода тела</td><td>1 → 4 <span class="delta">+3</span></td></tr>
@@ -413,7 +441,7 @@
       <div class="container-wide">
         <div class="tarifs-header" data-reveal>
           <h2>Три <em>маршрута</em></h2>
-          <p class="lead">Цены индивидуальные — зависят от выбранного маршрута и интенсивности. На бесплатной диагностике куратор покажет, что подходит и сколько стоит.</p>
+          <p class="lead">Цены индивидуальные — зависят от выбранного маршрута. На бесплатной диагностике куратор покажет, что подходит и сколько стоит.</p>
         </div>
 
         <div class="tarifs-grid" data-reveal-stagger>
@@ -429,9 +457,9 @@
           </article>
 
           <article class="tarif-card" data-featured="true">
-            <span class="tarif-badge">Основной</span>
+            <span class="tarif-badge">— Основной</span>
             <span class="tarif-tagline">Главный маршрут</span>
-            <h3 class="tarif-name">Программа<br><em>Проявленность</em></h3>
+            <h3 class="tarif-name"><em>Проявленность</em></h3>
             <ul class="tarif-list">
               <li>8 недель индивидуальной работы</li>
               <li>Маршрут с 3+ специалистами под твою карту</li>
@@ -451,7 +479,7 @@
               <li>Полное продюсерское сопровождение</li>
               <li>Выход в публичность с готовым продуктом</li>
             </ul>
-            <p class="tarif-note">Для тех, кто решил дойти до проявленного результата.</p>
+            <p class="tarif-note">Для тех, кто решил дойти до результата.</p>
           </article>
         </div>
       </div>
@@ -466,7 +494,7 @@
         </div>
 
         <div class="container-narrow">
-          <div class="faq-list" data-reveal-stagger>
+          <div data-reveal-stagger>
             <details class="faq-item">
               <summary>Я никогда не пел / у меня нет голоса. Подходит?</summary>
               <div class="faq-item-content">Подходит, и часто именно тебе. У всех есть голос. «Нет голоса» — это «не разрешил себе звучать». С этого как раз и начинаем.</div>
@@ -481,7 +509,7 @@
             </details>
             <details class="faq-item">
               <summary>Что если не получится / не понравится?</summary>
-              <div class="faq-item-content">После первого месяца смотрим карту прогресса. Если работа не подходит — корректируем маршрут или меняем специалиста. Деньги возвращаем по условиям договора.</div>
+              <div class="faq-item-content">После первого месяца смотрим карту прогресса. Если работа не подходит — корректируем маршрут или меняем специалиста.</div>
             </details>
             <details class="faq-item">
               <summary>У меня плотный график. Это много времени?</summary>
@@ -489,7 +517,7 @@
             </details>
             <details class="faq-item">
               <summary>Это онлайн или очно?</summary>
-              <div class="faq-item-content">Онлайн. У нас юрлицо в Таиланде, специалисты подключаются из разных стран. Удобно из любой точки.</div>
+              <div class="faq-item-content">Онлайн. У нас юрлицо в Таиланде, специалисты подключаются из разных стран.</div>
             </details>
           </div>
         </div>
@@ -591,7 +619,7 @@
           </ul>
         </div>
 
-        <div class="footer-col" data-placeholder="true">
+        <div class="footer-col">
           <h4>Контакты</h4>
           <ul>
             <li><a href="mailto:hello@proyavi.com">hello@proyavi.com</a></li>
@@ -600,7 +628,7 @@
           </ul>
         </div>
 
-        <div class="footer-col" data-placeholder="true">
+        <div class="footer-col">
           <h4>Юридическое</h4>
           <ul>
             <li><a href="#">Политика конфиденциальности</a></li>
