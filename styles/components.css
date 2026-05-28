@@ -1,0 +1,491 @@
+/* ============================================
+   Components — buttons, cards, forms
+   ============================================ */
+
+/* ============== BUTTONS ============== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 18px 32px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  isolation: isolate;
+  transition:
+    background var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+  will-change: transform;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Primary — solid accent */
+.btn-primary {
+  background: var(--color-cta);
+  color: var(--color-cta-text);
+  box-shadow: 0 8px 24px color-mix(in oklch, var(--color-accent) 30%, transparent);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-accent-soft), var(--color-accent));
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--color-cta-text);
+  box-shadow: 0 16px 40px color-mix(in oklch, var(--color-accent) 40%, transparent);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary .arrow {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Secondary — outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid color-mix(in oklch, var(--color-text) 25%, transparent);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text);
+  background: color-mix(in oklch, var(--color-text) 5%, transparent);
+}
+
+/* Ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  padding: 12px 20px;
+}
+
+.btn-ghost:hover {
+  color: var(--color-accent);
+}
+
+/* Large variant */
+.btn-lg {
+  padding: 22px 40px;
+  font-size: 1.0625rem;
+}
+
+/* Inverse — на тёмной подложке */
+.btn-inverse {
+  background: var(--color-text-on-dark);
+  color: var(--color-text);
+}
+
+.btn-inverse:hover {
+  background: var(--color-warm);
+}
+
+/* ============== CARDS ============== */
+
+.card {
+  background: var(--color-bg-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.card-bordered {
+  background: transparent;
+  border: 1px solid var(--color-line);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Liquid-glass card — Vision Pro inspired */
+.card-glass {
+  background: color-mix(in oklch, var(--color-bg) 70%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid color-mix(in oklch, var(--color-text) 8%, transparent);
+}
+
+/* Pain card — для секции "узнаёшь себя" */
+.pain-card {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-line);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+  transition: all var(--dur-base) var(--ease-out);
+}
+
+.pain-card:hover {
+  border-color: var(--color-accent);
+  background: var(--color-bg-soft);
+  transform: translateX(8px);
+}
+
+.pain-card::before {
+  content: "→";
+  display: inline-block;
+  color: var(--color-accent);
+  margin-right: var(--space-sm);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all var(--dur-base) var(--ease-out);
+}
+
+.pain-card:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Direction card — для блока 6 направлений (bento) */
+.direction-card {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-soft);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.direction-card::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle, color-mix(in oklch, var(--color-tech) 20%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  z-index: -1;
+}
+
+.direction-card:hover {
+  transform: translateY(-6px);
+}
+
+.direction-card:hover::before {
+  opacity: 1;
+}
+
+.direction-card h3 {
+  margin-block: var(--space-md) var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+}
+
+.direction-card p {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: var(--lh-normal);
+}
+
+.direction-card .direction-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--color-tech) 12%, transparent);
+  color: var(--color-tech);
+  font-size: 1.5rem;
+}
+
+.direction-card[data-featured="true"] {
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+}
+
+.direction-card[data-featured="true"] h3 {
+  color: var(--color-text-on-dark);
+}
+
+.direction-card[data-featured="true"] p {
+  color: color-mix(in oklch, var(--color-text-on-dark) 70%, transparent);
+}
+
+.direction-card[data-featured="true"] .direction-icon {
+  background: color-mix(in oklch, var(--color-warm) 20%, transparent);
+  color: var(--color-warm);
+}
+
+/* Person card — команда */
+.person-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.person-photo {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg,
+    color-mix(in oklch, var(--color-warm) 30%, var(--color-bg-soft)),
+    color-mix(in oklch, var(--color-tech-soft) 25%, var(--color-bg-soft))
+  );
+  position: relative;
+  overflow: hidden;
+  filter: grayscale(1);
+  transition: filter var(--dur-slow) var(--ease-out);
+}
+
+.person-card:hover .person-photo {
+  filter: grayscale(0);
+}
+
+.person-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, color-mix(in oklch, var(--color-bg-dark) 30%, transparent));
+}
+
+.person-role {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+}
+
+.person-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.person-bio {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  line-height: var(--lh-normal);
+}
+
+/* ============== FORMS ============== */
+
+.form {
+  display: grid;
+  gap: var(--space-md);
+  width: min(100%, 520px);
+  margin-inline: auto;
+}
+
+.field {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.01em;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  font-size: 1rem;
+  color: var(--color-text);
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  line-height: var(--lh-normal);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in oklch, var(--color-muted) 70%, transparent);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--color-accent) 12%, transparent);
+}
+
+.field:has(input:invalid:not(:placeholder-shown)) input {
+  border-color: var(--color-accent-soft);
+}
+
+/* Checkbox custom */
+.checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  cursor: pointer;
+  font-size: 0.9375rem;
+  line-height: var(--lh-normal);
+  color: var(--color-muted);
+}
+
+.checkbox-field input[type="checkbox"] {
+  appearance: none;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-bg);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  margin-top: 2px;
+}
+
+.checkbox-field input[type="checkbox"]::before {
+  content: "✓";
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-on-dark);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all var(--dur-fast) var(--ease-spring);
+}
+
+.checkbox-field input[type="checkbox"]:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.checkbox-field input[type="checkbox"]:checked::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Form success state */
+.form-success {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-soft);
+  view-transition-name: form-state;
+}
+
+.form-success h3 {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--space-md);
+}
+
+.form-success p {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+.form-success::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-text-on-dark);
+  font-size: 2.5rem;
+  animation: success-pulse 1.2s var(--ease-spring);
+}
+
+@keyframes success-pulse {
+  0%   { transform: scale(0); opacity: 0; }
+  50%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* FAQ Accordion */
+.faq-item {
+  border-bottom: 1px solid var(--color-line);
+  padding: var(--space-md) 0;
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-2xs);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.75rem;
+  font-weight: 300;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-item-content {
+  padding-top: var(--space-md);
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+  line-height: var(--lh-relaxed);
+  max-width: 65ch;
+}
+
+.faq-item[open] .faq-item-content {
+  animation: faq-reveal 400ms var(--ease-out);
+}
+
+@keyframes faq-reveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
