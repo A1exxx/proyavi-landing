@@ -87,7 +87,17 @@ ul, ol { list-style: none; }
   border-radius: var(--radius-sm);
 }
 
-::-webkit-scrollbar { width: 0; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--color-text) 14%, transparent);
+  border-radius: 999px;
+  border: 2px solid var(--color-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-accent) 60%, transparent);
+}
+* { scrollbar-width: thin; scrollbar-color: color-mix(in oklch, var(--color-text) 14%, transparent) transparent; }
 
 /* Typography defaults — Syne for display, Inter for body */
 h1, h2, h3, h4, h5, h6 {
