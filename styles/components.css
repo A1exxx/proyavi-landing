@@ -184,6 +184,185 @@
   padding-top: 16px;
 }
 
+/* ============== BEFORE/AFTER CASE PHOTO ============== */
+
+.case-photo-pair {
+  position: relative;
+  isolation: isolate;
+}
+
+.case-photo-pair img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transition: clip-path var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
+}
+
+.case-img-before {
+  filter: grayscale(0.85) contrast(0.95) brightness(0.85);
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  z-index: 1;
+}
+
+.case-img-after {
+  filter: saturate(1.05);
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  z-index: 1;
+}
+
+.case-photo-pair::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--color-accent), transparent);
+  z-index: 2;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  opacity: 0.7;
+}
+
+.case-photo-pair:hover .case-img-before {
+  clip-path: polygon(0 0, 25% 0, 25% 100%, 0 100%);
+}
+
+.case-photo-pair:hover .case-img-after {
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 25% 100%);
+}
+
+.case-photo-pair:hover::before {
+  left: 25%;
+}
+
+.case-photo-label {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-text-strong);
+  background: color-mix(in oklch, var(--color-bg) 70%, transparent);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
+}
+
+.case-photo > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95);
+}
+
+/* ============== FULL-WIDTH IMAGE SPREAD ============== */
+
+.spread {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 60vh, 720px);
+  overflow: hidden;
+  isolation: isolate;
+  margin-block: var(--space-2xl);
+}
+
+.spread img,
+.spread video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spread::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--color-bg) 0%, transparent 18%, transparent 82%, var(--color-bg) 100%);
+  z-index: 1;
+}
+
+.spread-caption {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-strong);
+  max-width: 24ch;
+  line-height: 1.15;
+}
+
+.spread-caption em {
+  font-family: var(--font-serif);
+  color: var(--color-accent-soft);
+}
+
+/* ============== MARQUEE — editorial style ============== */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-md) 0;
+  border-block: 1px solid var(--color-line);
+  background: var(--color-bg);
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 60px;
+  animation: marquee-roll 38s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.25vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-strong);
+}
+
+.marquee-track > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 60px;
+  flex-shrink: 0;
+}
+
+.marquee-track em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent-soft);
+}
+
+.marquee-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+@keyframes marquee-roll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
 /* ============== PERSON-CARD with real photos ============== */
 
 .person-card {
