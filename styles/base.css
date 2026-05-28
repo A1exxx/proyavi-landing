@@ -1,5 +1,5 @@
 /* ============================================
-   Base — reset + typography + body  (Dark Editorial)
+   Base — Vocal Studio · light editorial
    ============================================ */
 
 *,
@@ -34,25 +34,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01" on, "cv11" on;
+  font-feature-settings: "ss01" on, "cv11" on, "calt" on;
   overflow-x: hidden;
-  cursor: none; /* hidden — заменяет custom cursor */
-}
-
-@media (max-width: 1024px) {
-  body { cursor: auto; }
-}
-
-/* Grain overlay — придаёт фактуру плёнки */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: var(--z-overlay);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.06;
-  mix-blend-mode: overlay;
 }
 
 img, picture, svg, video {
@@ -69,103 +52,80 @@ button, input, textarea, select {
 button {
   background: none;
   border: none;
-  cursor: none;
-}
-
-@media (max-width: 1024px) {
-  button { cursor: pointer; }
+  cursor: pointer;
 }
 
 a {
-  color: var(--color-text);
+  color: var(--color-link);
   text-decoration: none;
-  cursor: none;
   transition: color var(--dur-fast) var(--ease-out);
 }
 
-@media (max-width: 1024px) {
-  a { cursor: pointer; }
-}
-
-a:hover {
-  color: var(--color-accent);
-}
+a:hover { color: var(--color-link-hover); }
 
 ul, ol { list-style: none; }
 
-/* Selection */
 ::selection {
   background: var(--color-accent);
   color: var(--color-bg);
 }
 
-/* Focus */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: var(--radius-sm);
 }
 
-/* Scrollbar — subtle */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: color-mix(in oklch, var(--color-text) 12%, transparent);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in oklch, var(--color-accent) 60%, transparent);
-}
+::-webkit-scrollbar { width: 0; }
 
-/* Typography */
+/* Typography defaults */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
   text-wrap: balance;
   color: var(--color-text-strong);
-  font-variation-settings: "opsz" 144;
 }
 
-h1 { font-size: var(--fs-h1); font-weight: 300; }
-h2 { font-size: var(--fs-h2); font-weight: 300; }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); font-weight: 400; }
 
 em {
   font-style: italic;
-  color: var(--color-accent);
-  font-variation-settings: "opsz" 144, "SOFT" 50;
 }
 
 p {
   text-wrap: pretty;
   line-height: var(--lh-relaxed);
-  max-width: 65ch;
-  color: var(--color-muted);
+  max-width: 60ch;
+  color: var(--color-text);
 }
+
+p.lead { font-size: var(--fs-lead); color: var(--color-text); }
 
 strong { font-weight: 500; color: var(--color-text-strong); }
 
-/* Eyebrow */
+/* Eyebrow — single thin line + uppercase mono-cap */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
+  gap: 16px;
+  font-family: var(--font-body);
   font-size: var(--fs-eyebrow);
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-muted);
 }
 
 .eyebrow::before {
   content: "";
   display: inline-block;
-  width: 32px;
+  width: 28px;
   height: 1px;
-  background: var(--color-accent);
+  background: var(--color-text-strong);
 }
 
 /* Containers */
@@ -195,29 +155,27 @@ section {
   position: relative;
 }
 
-/* Placeholder visual — gradient blob вместо серой коробки */
+/* Placeholder marker — minimal */
 [data-placeholder="true"] {
   position: relative;
 }
 
 [data-placeholder="true"]::after {
-  content: "TBD";
+  content: "placeholder";
   position: absolute;
   top: 16px;
   right: 16px;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   padding: 4px 10px;
-  border-radius: var(--radius-pill);
-  background: color-mix(in oklch, var(--color-accent) 18%, transparent);
-  color: var(--color-accent);
-  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
+  background: var(--color-bg);
+  color: var(--color-muted);
+  border: 1px solid var(--color-line);
   pointer-events: none;
   z-index: 5;
-  backdrop-filter: blur(8px);
 }
 
 .sr-only {

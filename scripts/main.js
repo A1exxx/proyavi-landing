@@ -1,30 +1,15 @@
 /**
- * main.js — entry point.
+ * main.js — entry point. Vocal Studio v3
+ * Only Lenis smooth scroll + opacity reveal + form. No cursor / magnetic / WebGL / SplitText.
  */
 
-import { initWaveform } from './waveform.js';
 import { initReveal } from './reveal.js';
 import { initSmoothScroll } from './scroll.js';
 import { initForm } from './form.js';
-import { initCursor } from './cursor.js';
-import { initMagnetic } from './magnetic.js';
-import { initSplitText } from './splittext.js';
 
 function boot() {
-  const params = new URLSearchParams(location.search);
-  const screenshotMode = params.has('screenshot');
-
-  if (!screenshotMode) {
-    initSmoothScroll();
-    initCursor();
-    initMagnetic();
-  }
-  initSplitText();
+  initSmoothScroll();
   initReveal();
-
-  const heroContainer = document.querySelector('#hero-webgl');
-  if (heroContainer && !screenshotMode) initWaveform(heroContainer);
-
   initForm();
   initNavBehavior();
 
@@ -35,30 +20,16 @@ function boot() {
 function initNavBehavior() {
   const nav = document.querySelector('.site-nav');
   if (!nav) return;
-  let lastY = 0;
   let ticking = false;
-
   function onScroll() {
     const y = window.scrollY;
-    if (y > 100 && y > lastY) {
-      nav.style.transform = 'translateY(-100%)';
-    } else {
-      nav.style.transform = 'translateY(0)';
-    }
-    lastY = y;
+    nav.classList.toggle('is-scrolled', y > 80);
     ticking = false;
   }
-
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
 }
 
 if (document.readyState === 'loading') {
