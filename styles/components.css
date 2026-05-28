@@ -184,11 +184,15 @@
   padding-top: 16px;
 }
 
-/* ============== BEFORE/AFTER CASE PHOTO ============== */
+/* ============== BEFORE/AFTER CASE PHOTO — draggable slider ============== */
 
 .case-photo-pair {
   position: relative;
   isolation: isolate;
+  cursor: ew-resize;
+  --split: 50%;
+  user-select: none;
+  touch-action: pan-y;
 }
 
 .case-photo-pair img {
@@ -197,45 +201,111 @@
   object-fit: cover;
   position: absolute;
   inset: 0;
-  transition: clip-path var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
+  transition: clip-path 60ms linear, filter var(--dur-slow) var(--ease-out);
+  pointer-events: none;
 }
 
 .case-img-before {
   filter: grayscale(0.85) contrast(0.95) brightness(0.85);
-  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  clip-path: inset(0 calc(100% - var(--split)) 0 0);
   z-index: 1;
 }
 
 .case-img-after {
-  filter: saturate(1.05);
-  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  filter: saturate(1.08);
+  clip-path: inset(0 0 0 var(--split));
   z-index: 1;
+}
+
+.case-photo-pair.is-demo .case-img-before,
+.case-photo-pair.is-demo .case-img-after {
+  transition: clip-path 1500ms cubic-bezier(0.85, 0, 0.15, 1), filter var(--dur-slow) var(--ease-out);
+}
+
+.case-photo-pair.is-demo {
+  --split: 28%;
 }
 
 .case-photo-pair::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 1px;
+  left: var(--split);
+  width: 2px;
   height: 100%;
   background: linear-gradient(180deg, transparent, var(--color-accent), transparent);
   z-index: 2;
-  transition: opacity var(--dur-slow) var(--ease-out);
-  opacity: 0.7;
+  transition: left 60ms linear;
+  pointer-events: none;
+  box-shadow: 0 0 16px color-mix(in oklch, var(--color-accent) 60%, transparent);
 }
 
-.case-photo-pair:hover .case-img-before {
-  clip-path: polygon(0 0, 25% 0, 25% 100%, 0 100%);
+.case-photo-pair.is-demo::before { transition: left 1500ms cubic-bezier(0.85, 0, 0.15, 1); }
+
+/* The draggable handle knob */
+.case-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--split);
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  cursor: ew-resize;
+  display: grid;
+  place-items: center;
+  transition: left 60ms linear, transform var(--dur-fast) var(--ease-out);
 }
 
-.case-photo-pair:hover .case-img-after {
-  clip-path: polygon(25% 0, 100% 0, 100% 100%, 25% 100%);
+.case-photo-pair.is-demo .case-handle { transition: left 1500ms cubic-bezier(0.85, 0, 0.15, 1), transform var(--dur-fast) var(--ease-out); }
+
+.case-handle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 24px color-mix(in oklch, var(--color-accent) 70%, transparent);
 }
 
-.case-photo-pair:hover::before {
-  left: 25%;
+.case-handle-knob {
+  position: relative;
+  z-index: 1;
+  color: var(--color-bg);
+  display: grid;
+  place-items: center;
 }
+
+.case-photo-pair:hover .case-handle,
+.case-photo-pair.is-dragging .case-handle {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.case-photo-pair.is-dragging .case-handle::before {
+  box-shadow: 0 0 36px color-mix(in oklch, var(--color-accent) 80%, transparent);
+}
+
+/* Labels — fixed left/right */
+.case-photo-pair .case-label-l,
+.case-photo-pair .case-label-r {
+  position: absolute;
+  top: 16px;
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-text-strong);
+  background: color-mix(in oklch, var(--color-bg) 75%, transparent);
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in oklch, var(--color-line) 80%, transparent);
+}
+
+.case-photo-pair .case-label-l { left: 16px; }
+.case-photo-pair .case-label-r { right: 16px; color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 40%, transparent); }
 
 .case-photo-label {
   position: absolute;
