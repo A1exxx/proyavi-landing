@@ -1,8 +1,7 @@
 /* ============================================
-   Base — reset + typography + body
+   Base — reset + typography + body  (Dark Editorial)
    ============================================ */
 
-/* Modern reset (slightly opinionated) */
 *,
 *::before,
 *::after {
@@ -16,6 +15,7 @@ html {
   -moz-tab-size: 4;
   tab-size: 4;
   scroll-behavior: smooth;
+  background: var(--color-bg);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -36,10 +36,23 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: "ss01" on, "cv11" on;
   overflow-x: hidden;
-  /* Subtle warm gradient overlay */
-  background-image:
-    radial-gradient(ellipse 120% 60% at 50% 0%, color-mix(in oklch, var(--color-warm) 12%, transparent), transparent 60%),
-    radial-gradient(ellipse 100% 80% at 100% 100%, color-mix(in oklch, var(--color-tech-soft) 10%, transparent), transparent 60%);
+  cursor: none; /* hidden — заменяет custom cursor */
+}
+
+@media (max-width: 1024px) {
+  body { cursor: auto; }
+}
+
+/* Grain overlay — придаёт фактуру плёнки */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-overlay);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
 }
 
 img, picture, svg, video {
@@ -48,10 +61,7 @@ img, picture, svg, video {
   height: auto;
 }
 
-button,
-input,
-textarea,
-select {
+button, input, textarea, select {
   font: inherit;
   color: inherit;
 }
@@ -59,73 +69,103 @@ select {
 button {
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: none;
+}
+
+@media (max-width: 1024px) {
+  button { cursor: pointer; }
 }
 
 a {
-  color: var(--color-link);
+  color: var(--color-text);
   text-decoration: none;
+  cursor: none;
   transition: color var(--dur-fast) var(--ease-out);
 }
 
-a:hover {
-  color: var(--color-link-hover);
+@media (max-width: 1024px) {
+  a { cursor: pointer; }
 }
 
-ul, ol {
-  list-style: none;
+a:hover {
+  color: var(--color-accent);
 }
+
+ul, ol { list-style: none; }
 
 /* Selection */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-text-on-dark);
+  color: var(--color-bg);
 }
 
 /* Focus */
 :focus-visible {
-  outline: 2px solid var(--color-tech);
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
   border-radius: var(--radius-sm);
+}
+
+/* Scrollbar — subtle */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--color-text) 12%, transparent);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--color-accent) 60%, transparent);
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
   text-wrap: balance;
-  color: var(--color-text);
+  color: var(--color-text-strong);
+  font-variation-settings: "opsz" 144;
 }
 
-h1 { font-size: var(--fs-h1); }
-h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); font-weight: 500; }
+h1 { font-size: var(--fs-h1); font-weight: 300; }
+h2 { font-size: var(--fs-h2); font-weight: 300; }
+h3 { font-size: var(--fs-h3); font-weight: 400; }
+
+em {
+  font-style: italic;
+  color: var(--color-accent);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
 
 p {
   text-wrap: pretty;
   line-height: var(--lh-relaxed);
   max-width: 65ch;
+  color: var(--color-muted);
 }
 
-strong { font-weight: 600; }
+strong { font-weight: 500; color: var(--color-text-strong); }
 
-/* Eyebrow / overline */
+/* Eyebrow */
 .eyebrow {
-  display: inline-block;
-  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
   font-size: var(--fs-eyebrow);
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent);
 }
 
 .eyebrow::before {
-  content: "—";
-  margin-right: 0.5em;
-  color: var(--color-accent);
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-accent);
 }
 
 /* Containers */
@@ -144,34 +184,42 @@ strong { font-weight: 600; }
   margin-inline: auto;
 }
 
+.container-full {
+  width: min(100% - 2 * var(--space-md), var(--container-full));
+  margin-inline: auto;
+}
+
 /* Section spacing */
 section {
   padding-block: var(--space-section);
   position: relative;
 }
 
-/* Utility — placeholder highlight (для команды и кейсов) */
+/* Placeholder visual — gradient blob вместо серой коробки */
 [data-placeholder="true"] {
   position: relative;
 }
 
 [data-placeholder="true"]::after {
-  content: "placeholder — заполнить";
+  content: "TBD";
   position: absolute;
-  top: var(--space-2xs);
-  right: var(--space-2xs);
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
-  background: var(--color-placeholder-highlight);
+  background: color-mix(in oklch, var(--color-accent) 18%, transparent);
   color: var(--color-accent);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 30%, transparent);
   pointer-events: none;
+  z-index: 5;
+  backdrop-filter: blur(8px);
 }
 
-/* Hidden visually but accessible */
 .sr-only {
   position: absolute;
   width: 1px;

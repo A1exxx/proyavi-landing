@@ -1,31 +1,33 @@
 /**
  * main.js — entry point.
- * Инициализирует все модули после DOMContentLoaded.
  */
 
 import { initWaveform } from './waveform.js';
 import { initReveal } from './reveal.js';
 import { initSmoothScroll } from './scroll.js';
 import { initForm } from './form.js';
+import { initCursor } from './cursor.js';
+import { initMagnetic } from './magnetic.js';
+import { initSplitText } from './splittext.js';
 
 function boot() {
-  // Smooth scroll
-  initSmoothScroll();
+  const params = new URLSearchParams(location.search);
+  const screenshotMode = params.has('screenshot');
 
-  // Reveal animations
+  if (!screenshotMode) {
+    initSmoothScroll();
+    initCursor();
+    initMagnetic();
+  }
+  initSplitText();
   initReveal();
 
-  // Hero waveform
-  const canvas = document.querySelector('#hero-waveform-canvas');
-  initWaveform(canvas);
+  const heroContainer = document.querySelector('#hero-webgl');
+  if (heroContainer && !screenshotMode) initWaveform(heroContainer);
 
-  // Form
   initForm();
-
-  // Nav scroll behavior — hide/show on scroll
   initNavBehavior();
 
-  // Year in footer
   const yearEl = document.querySelector('#current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
