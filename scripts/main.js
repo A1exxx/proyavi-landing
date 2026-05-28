@@ -4,11 +4,10 @@
  */
 
 import { initReveal } from './reveal.js';
-import { initSmoothScroll } from './scroll.js';
 import { initForm } from './form.js';
 
 function boot() {
-  initSmoothScroll();
+  // Native scroll — Lenis отключён, ощущался ватным
   initReveal();
   initForm();
   initNavBehavior();
