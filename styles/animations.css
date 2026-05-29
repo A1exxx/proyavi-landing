@@ -68,10 +68,10 @@
 @media (max-width: 768px) {
   /* Type scale shrink */
   :root {
-    --space-section: clamp(80px, 14vw, 140px);
-    --space-2xl: 80px;
-    --space-xl: 56px;
-    --space-lg: 32px;
+    --space-section: clamp(48px, 11vw, 76px);
+    --space-2xl: 56px;
+    --space-xl: 40px;
+    --space-lg: 28px;
   }
 
   /* Nav */

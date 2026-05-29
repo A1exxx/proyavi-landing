@@ -4,7 +4,7 @@
    ============================================ */
 
 /* ---------- SPREAD: taller, richer ---------- */
-.spread-tall { height: clamp(440px, 78vh, 860px); }
+.spread-tall { height: clamp(380px, 56vh, 600px); }
 
 .spread-caption {
   bottom: clamp(28px, 5vw, 56px);
