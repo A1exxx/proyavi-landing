@@ -4,43 +4,44 @@
    ============================================ */
 
 :root {
-  /* -------- COLORS — WARM CHARCOAL + RUST -------- */
-  --color-bg:           rgb(20 17 14);
-  --color-bg:           oklch(0.140 0.008 60);          /* deep warm charcoal */
-  --color-bg-elev:      rgb(28 24 20);
-  --color-bg-elev:      oklch(0.185 0.010 55);          /* elevated surface */
-  --color-bg-card:      rgb(36 31 27);
-  --color-bg-card:      oklch(0.225 0.012 55);          /* card */
-  --color-bg-warm:      rgb(245 239 227);
-  --color-bg-warm:      oklch(0.948 0.025 80);          /* cream invert */
+  /* -------- COLORS — v7 «PLUM NOIR + CORAL FLAME» (stylish, vivid, creative) -------- */
+  /* Background — deep warm plum-noir (richer & more designed than flat charcoal) */
+  --color-bg:           rgb(22 16 21);
+  --color-bg:           oklch(0.150 0.018 350);          /* deep warm plum-black */
+  --color-bg-elev:      rgb(31 23 30);
+  --color-bg-elev:      oklch(0.195 0.022 350);          /* elevated surface */
+  --color-bg-card:      rgb(40 30 39);
+  --color-bg-card:      oklch(0.240 0.026 350);          /* card */
+  --color-bg-warm:      rgb(247 240 236);
+  --color-bg-warm:      oklch(0.952 0.012 40);           /* light invert */
 
-  /* Text */
-  --color-text:         rgb(232 224 210);
-  --color-text:         oklch(0.890 0.020 75);          /* cream */
-  --color-text-strong:  rgb(247 240 226);
-  --color-text-strong:  oklch(0.948 0.022 80);
-  --color-muted:        rgb(155 142 124);
-  --color-muted:        oklch(0.635 0.025 70);
-  --color-dim:          rgb(108 96 82);
-  --color-dim:          oklch(0.475 0.020 65);
-  --color-line:         rgb(56 48 42);
-  --color-line:         oklch(0.320 0.012 60);
-  --color-line-soft:    rgb(42 36 32);
-  --color-line-soft:    oklch(0.252 0.012 55);
+  /* Text — warm ivory with a hair of rose */
+  --color-text:         rgb(238 228 224);
+  --color-text:         oklch(0.905 0.012 40);           /* warm ivory */
+  --color-text-strong:  rgb(250 244 240);
+  --color-text-strong:  oklch(0.962 0.010 45);
+  --color-muted:        rgb(176 156 160);
+  --color-muted:        oklch(0.680 0.022 5);            /* dusty rose-grey */
+  --color-dim:          rgb(120 100 110);
+  --color-dim:          oklch(0.510 0.026 350);
+  --color-line:         rgb(64 50 60);
+  --color-line:         oklch(0.345 0.020 350);
+  --color-line-soft:    rgb(46 36 44);
+  --color-line-soft:    oklch(0.275 0.018 350);
 
-  /* PRIMARY WARM ACCENT — terracotta */
-  --color-accent:       rgb(216 104 76);
-  --color-accent:       oklch(0.655 0.150 38);          /* terracotta — brighter than v5 */
-  --color-accent-soft:  rgb(232 128 94);
-  --color-accent-soft:  oklch(0.715 0.150 40);          /* warmer terracotta */
-  --color-accent-deep:  rgb(168 72 50);
-  --color-accent-deep:  oklch(0.525 0.140 35);          /* deeper rust */
+  /* PRIMARY ACCENT — coral flame (vivid, alive, stage-lit passion) */
+  --color-accent:       rgb(240 99 88);
+  --color-accent:       oklch(0.690 0.185 28);           /* coral flame */
+  --color-accent-soft:  rgb(250 130 112);
+  --color-accent-soft:  oklch(0.745 0.165 32);           /* light coral */
+  --color-accent-deep:  rgb(196 60 70);
+  --color-accent-deep:  oklch(0.560 0.180 18);           /* deep rose-red */
 
-  /* SECOND ACCENT — champagne gold (creative warmth + brighter contrast) */
-  --color-gold:         rgb(224 164 92);
-  --color-gold:         oklch(0.770 0.110 70);          /* champagne gold */
-  --color-gold-soft:    rgb(238 192 132);
-  --color-gold-soft:    oklch(0.840 0.090 78);          /* light gold */
+  /* SECOND ACCENT — warm gold (highlight, used sparingly) */
+  --color-gold:         rgb(240 186 118);
+  --color-gold:         oklch(0.820 0.105 72);           /* warm gold */
+  --color-gold-soft:    rgb(248 210 158);
+  --color-gold-soft:    oklch(0.875 0.080 78);           /* light gold */
 
   /* GLOW tokens — richer, brighter */
   --glow-warm:    0 0 80px color-mix(in oklch, var(--color-accent) 55%, transparent);

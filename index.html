@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/sections.css">
   <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/v7.css">
 
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314110E'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23C9624A'/%3E%3C/svg%3E">
@@ -49,7 +50,7 @@
         <li><a href="#cases">Кейсы</a></li>
         <li><a href="#faq">Вопросы</a></li>
       </ul>
-      <a href="#form" class="nav-cta">Записаться</a>
+      <a href="#form" class="nav-cta" data-modal>Записаться</a>
     </div>
   </nav>
 
@@ -67,7 +68,7 @@
       <div class="hero-inner" data-reveal>
         <span class="chip hero-chip">
           <span class="chip-dot"></span>
-          Бесплатная диагностика голоса · 40 минут
+          Бесплатная диагностика голоса
         </span>
         <h1 id="hero-title" class="hero-title">
           Раскрой<br>свой <em class="grad-text">голос</em> —<br>раскрой <em class="grad-text">себя</em>
@@ -87,8 +88,8 @@
           Вокал · сценическая речь · работа перед камерой · психология проявленности.
         </p>
         <div class="hero-cta-group">
-          <a href="#form" class="btn btn-primary" data-magnetic>
-            <span>Бесплатная диагностика&nbsp;·&nbsp;40&nbsp;мин</span>
+          <a href="#form" class="btn btn-primary" data-modal data-magnetic>
+            <span>Записаться на диагностику</span>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
           <p class="hero-micro">Бесплатно · онлайн · без обязательств</p>
@@ -126,10 +127,10 @@
       </div>
     </div>
 
-    <!-- ====================== SPREAD: BREATH ====================== -->
-    <div class="spread" aria-hidden="true">
-      <img src="assets/images/manifest-breath.webp" alt="" loading="lazy">
-      <p class="spread-caption"><em>«Звук, который ты несёшь<br>в каждом своём вдохе»</em></p>
+    <!-- ====================== SPREAD: RELEASE ====================== -->
+    <div class="spread spread-tall">
+      <img src="assets/images/ecstatic-wide.webp" alt="Человек поёт в полном раскрытии" loading="lazy">
+      <p class="spread-caption"><em>«В тот момент, когда ты<br>наконец звучишь — себя не спрятать»</em></p>
     </div>
 
     <!-- ====================== MANIFEST ====================== -->
@@ -213,6 +214,26 @@
             <span>Не можешь свободно выражать себя — даже с близкими</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ====================== MOOD GALLERY — лица «в раскрытии» ====================== -->
+    <section class="mood" id="mood">
+      <div class="container-wide">
+        <div class="mood-head" data-reveal>
+          <span class="eyebrow">По ту сторону зажима</span>
+          <h2>Так выглядит, когда человек <em>наконец звучит</em></h2>
+        </div>
+      </div>
+      <div class="mood-strip" data-reveal>
+        <figure class="mood-item"><img src="assets/images/ecstatic-1.webp" alt="Девушка поёт с закрытыми глазами" loading="lazy"></figure>
+        <figure class="mood-item"><img src="assets/images/ecstatic-3.webp" alt="Радость и свобода в голосе" loading="lazy"></figure>
+        <figure class="mood-item"><img src="assets/images/ecstatic-2.webp" alt="Мужчина поёт в полную силу" loading="lazy"></figure>
+        <figure class="mood-item"><img src="assets/images/team-1-musician.webp" alt="" loading="lazy"></figure>
+        <figure class="mood-item"><img src="assets/images/case-2-after.webp" alt="" loading="lazy"></figure>
+      </div>
+      <div class="container-wide">
+        <p class="mood-foot" data-reveal>Не «петь правильно». А перестать сдерживаться — голосом, телом, собой.</p>
       </div>
     </section>
 
@@ -497,11 +518,51 @@
       </div>
     </section>
 
+    <!-- ====================== WHAT YOU GET ====================== -->
+    <section class="getafter" id="getafter">
+      <div class="container-wide">
+        <div class="getafter-head" data-reveal>
+          <span class="eyebrow">Бесплатная диагностика</span>
+          <h2>Что ты унесёшь <em>с диагностики</em></h2>
+          <p>Это не «продающий звонок». За один разговор с куратором ты получаешь конкретику о своём голосе — даже если дальше не пойдёшь учиться.</p>
+        </div>
+        <div class="getafter-grid" data-reveal-stagger>
+          <article class="getafter-item">
+            <span class="ga-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>
+            <h3>Карта твоего голоса</h3>
+            <p>Оценим 6 граней проявленности: свобода голоса, тела, контакт с собой, выражение, границы и готовность звучать на людях.</p>
+          </article>
+          <article class="getafter-item">
+            <span class="ga-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <h3>Где именно зажим</h3>
+            <p>Покажем, что держит твой голос — дыхание, тело, страх оценки или техника. Часто причина не там, где кажется.</p>
+          </article>
+          <article class="getafter-item">
+            <span class="ga-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h10M4 12h16M4 18h7"/><circle cx="18" cy="6" r="2"/><circle cx="15" cy="18" r="2"/></svg></span>
+            <h3>Личный маршрут</h3>
+            <p>Из шести направлений соберём твой путь: с чего начать, что добавить, что отложить. Под твою цель, а не «программа для всех».</p>
+          </article>
+          <article class="getafter-item">
+            <span class="ga-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
+            <h3>Своего специалиста</h3>
+            <p>Подберём, с кем тебе стартовать — вокалист, психолог или практик. И назовём первый конкретный шаг.</p>
+          </article>
+        </div>
+        <div class="getafter-cta">
+          <a href="#form" class="btn btn-primary btn-lg" data-modal data-magnetic>
+            <span>Записаться на диагностику</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <p class="getafter-note">Бесплатно · онлайн · ни к чему не обязывает.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ====================== PROCESS ====================== -->
     <section class="process" id="process">
       <div class="container-wide">
         <div class="process-header" data-reveal>
-          <h2>Что произойдёт <em>за 40 минут</em></h2>
+          <h2>Как проходит <em>диагностика</em></h2>
           <p class="lead">Бесплатная диагностика — без давления и продаж в звонке. Куратор задаёт вопросы по нашей карте проявленности и подбирает специалиста.</p>
         </div>
 
@@ -514,7 +575,7 @@
           <div class="process-step">
             <span class="process-num">Шаг 02</span>
             <h3>Куратор<br><em>созванивается</em></h3>
-            <p>40-минутный созвон. Без продаж, без давления. Куратор задаёт вопросы по карте проявленности.</p>
+            <p>Спокойный созвон с куратором. Без продаж и давления — он задаёт вопросы по карте проявленности и слушает.</p>
           </div>
           <div class="process-step">
             <span class="process-num">Шаг 03</span>
@@ -594,7 +655,7 @@
             </details>
             <details class="faq-item">
               <summary>Сколько это стоит?</summary>
-              <div class="faq-item-content">Цена зависит от маршрута. На бесплатной 40-минутной диагностике куратор покажет, что тебе подходит и сколько это стоит. Без давления и продаж в звонке.</div>
+              <div class="faq-item-content">Цена зависит от маршрута. На бесплатной диагностике куратор покажет, что тебе подходит и сколько это стоит. Без давления и продаж в звонке.</div>
             </details>
             <details class="faq-item">
               <summary>Что если не получится / не понравится?</summary>
@@ -639,8 +700,8 @@
         <div class="final-cta-inner">
           <h2>Когда <em>ты&nbsp;готов?</em></h2>
           <div>
-            <p>Если хоть что-то из этого текста про тебя — стоит провести 40 минут с куратором. Бесплатно, онлайн, без обязательств.</p>
-            <a href="#form" class="btn btn-primary btn-lg" data-magnetic>
+            <p>Если хоть что-то из этого текста про тебя — приходи на бесплатную диагностику. Онлайн, без обязательств, с живым куратором.</p>
+            <a href="#form" class="btn btn-primary btn-lg" data-modal data-magnetic>
               <span>Записаться на диагностику</span>
               <span class="arrow" aria-hidden="true">→</span>
             </a>
@@ -693,9 +754,62 @@
 
   </main>
 
+  <!-- ====================== LEAD MODAL ====================== -->
+  <dialog class="modal" id="lead-modal" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-modal-close aria-label="Закрыть">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <span class="eyebrow">Бесплатная диагностика</span>
+      <h2 id="modal-title">Запишись — и услышь <em>свой голос</em></h2>
+      <p class="modal-sub">Пара полей — и куратор свяжется в течение дня. Разберём твой голос и подберём маршрут. Без оплаты и обязательств.</p>
+
+      <form id="modal-form" class="form" novalidate>
+        <div class="field">
+          <label class="field-label" for="m-name">Как тебя зовут</label>
+          <input id="m-name" name="name" type="text" placeholder="Имя" required minlength="2" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label class="field-label" for="m-contact">Куда тебе написать</label>
+          <input id="m-contact" name="contact" type="text" placeholder="Телефон, Telegram или WhatsApp" required autocomplete="tel">
+        </div>
+
+        <div class="field" style="border-bottom:none;padding-bottom:0;">
+          <span class="field-label">Что хочешь раскрыть</span>
+          <div class="goal-chips" id="goal-chips" role="group" aria-label="Главная цель">
+            <button type="button" class="goal-chip" aria-pressed="false">Свободно петь</button>
+            <button type="button" class="goal-chip" aria-pressed="false">Уверенно говорить</button>
+            <button type="button" class="goal-chip" aria-pressed="false">Не зажиматься в кадре</button>
+            <button type="button" class="goal-chip" aria-pressed="false">Записать свою песню</button>
+            <button type="button" class="goal-chip" aria-pressed="false">Просто звучать собой</button>
+          </div>
+          <input type="hidden" name="goal" id="m-goal">
+        </div>
+
+        <label class="checkbox-field">
+          <input type="checkbox" name="consent" required>
+          <span>Понимаю, что диагностика бесплатная и ни к чему не обязывает</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-lg">
+          <span>Записаться на диагностику</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+
+        <p class="modal-reassure">Куратор — живой человек из команды. Ответит в течение дня.</p>
+      </form>
+
+      <div id="modal-success" class="form-success" hidden>
+        <h3><em>Принято</em></h3>
+        <p>С тобой свяжется куратор в течение дня — будем настраивать звук.</p>
+      </div>
+    </div>
+  </dialog>
+
   <!-- ====================== STICKY MOBILE CTA ====================== -->
-  <a href="#form" class="sticky-cta" id="sticky-cta">
-    Бесплатная диагностика · 40 мин <span aria-hidden="true">→</span>
+  <a href="#form" class="sticky-cta" id="sticky-cta" data-modal>
+    Бесплатная диагностика <span aria-hidden="true">→</span>
   </a>
 
   <!-- ====================== FOOTER ====================== -->

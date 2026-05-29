@@ -7,6 +7,7 @@ import { initReveal } from './reveal.js';
 import { initForm } from './form.js';
 import {
   initBeforeAfter,
+  initModal,
   initHeroBlob,
   initTilt,
   initMagneticLite,
@@ -16,13 +17,22 @@ import {
 } from './interactions.js';
 
 function boot() {
+  // screenshot-режим (?screenshot=1) — облегчает страницу для headless-рендера
+  if (new URLSearchParams(location.search).has('screenshot')) {
+    const s = document.createElement('style');
+    s.textContent = '*,*::before,*::after{animation:none!important}body::before{display:none!important}';
+    document.head.appendChild(s);
+    document.querySelectorAll('video').forEach((v) => { v.pause(); v.removeAttribute('autoplay'); });
+  }
+
   // Native scroll — Lenis отключён, ощущался ватным
   initReveal();
   initForm();
   initNavBehavior();
 
-  // V5 micro-interactions
+  // V5/V7 micro-interactions
   initBeforeAfter();
+  initModal();
   initHeroBlob();
   initTilt();
   initMagneticLite();

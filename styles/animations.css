@@ -234,3 +234,25 @@
 
   .person-card:hover .person-photo img { transform: none; filter: saturate(0.9); }
 }
+
+/* ============================================
+   V7 — DE-NUMBERING (убрать казённую нумерацию)
+   ============================================ */
+.service-pill .num,
+.manifest-tenet-num,
+.pain-card-num,
+.segment-num,
+.process-num,
+.direction-num { display: none !important; }
+
+/* пересобираем гриды без колонки номера */
+.manifest-tenet { grid-template-columns: 1fr !important; }
+.pain-card { grid-template-columns: 1fr !important; gap: 4px !important; }
+.direction-card { grid-template-columns: 1.1fr 1fr !important; }
+.segment-item { grid-template-columns: 1.1fr 1.4fr !important; }
+
+@media (max-width: 768px) {
+  .direction-card { grid-template-columns: 1fr !important; }
+  .segment-item { grid-template-columns: 1fr !important; }
+  .segment-item p { padding-left: 0 !important; }
+}

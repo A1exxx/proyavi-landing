@@ -11,64 +11,67 @@ const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isFinePointer  = matchMedia('(pointer: fine)').matches;
 const isTouchDevice  = matchMedia('(hover: none)').matches;
 
-/* ============= 1) BEFORE / AFTER — SCROLL-LINKED AUTO-WIPE =============
- * Кадр сам «протирается» с «было» → «стало» по мере прохождения через вьюпорт.
- * pointer-events: none на всём → касание НИКОГДА не захватывается → скролл на
- * телефоне работает нативно (фикс жалобы пользователя на залипание).
+/* ============= 1) BEFORE / AFTER — теперь CSS auto-crossfade =============
+ * Анимация полностью в v7.css (ba-before/ba-after). JS больше не нужен.
+ * Оставлено пустым ради совместимости импорта.
  */
+export function initBeforeAfter() { /* no-op — CSS crossfade в v7.css */ }
 
-export function initBeforeAfter() {
-  const cards = document.querySelectorAll('.case-photo-pair');
-  if (!cards.length) return;
+/* ============= 1b) LEAD MODAL — анкета по кнопке «Записаться» ============= */
 
-  // reduced-motion: сразу показываем «стало»
-  if (prefersReduced) {
-    cards.forEach((c) => c.style.setProperty('--split', '100%'));
-    return;
+export function initModal() {
+  const modal = document.querySelector('#lead-modal');
+  if (!modal || !modal.showModal) return; // нет <dialog> support → ссылки ведут на #form (fallback)
+
+  let lastFocus = null;
+
+  function open(e) {
+    if (e) e.preventDefault();
+    lastFocus = document.activeElement;
+    // сброс success-состояния если повторно открыли
+    const form = modal.querySelector('#modal-form');
+    const success = modal.querySelector('#modal-success');
+    if (form && success && success.hidden === false) {
+      success.hidden = true;
+      form.hidden = false;
+      form.reset();
+      modal.querySelectorAll('.goal-chip[aria-pressed="true"]').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+    }
+    modal.showModal();
+    const firstInput = modal.querySelector('input[type="text"]');
+    if (firstInput) setTimeout(() => firstInput.focus(), 50);
   }
 
-  // активные (видимые) карточки — обновляем только их
-  const active = new Set();
+  function close() {
+    modal.close();
+  }
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) active.add(e.target);
-      else active.delete(e.target);
-    });
-    if (active.size) requestTick();
-  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-
-  cards.forEach((c) => {
-    c.style.setProperty('--split', '0%');
-    io.observe(c);
+  document.querySelectorAll('[data-modal]').forEach((btn) => {
+    btn.addEventListener('click', open);
   });
 
-  let ticking = false;
-  function requestTick() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }
+  modal.querySelectorAll('[data-modal-close]').forEach((b) => b.addEventListener('click', close));
 
-  function update() {
-    ticking = false;
-    const vh = window.innerHeight;
-    active.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      // progress: 0 когда карточка только входит снизу, 1 когда уходит сверху.
-      // «Рабочая зона» — пока центр карточки идёт от 85% до 35% высоты экрана.
-      const center = rect.top + rect.height / 2;
-      const raw = (vh * 0.85 - center) / (vh * 0.5);
-      const p = Math.max(0, Math.min(1, raw));
-      // ease-in-out для мягкости
-      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-      card.style.setProperty('--split', (eased * 100).toFixed(1) + '%');
+  // клик по подложке закрывает
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+
+  modal.addEventListener('close', () => {
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  });
+
+  // goal chips → hidden input
+  const chips = modal.querySelectorAll('.goal-chip');
+  const goalInput = modal.querySelector('#m-goal');
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const pressed = chip.getAttribute('aria-pressed') === 'true';
+      chips.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', String(!pressed));
+      if (goalInput) goalInput.value = pressed ? '' : chip.textContent.trim();
     });
-  }
-
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', requestTick, { passive: true });
-  update();
+  });
 }
 
 /* ============= 2) CURSOR-REACTIVE HERO BLOB ============= */
