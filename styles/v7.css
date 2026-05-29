@@ -201,6 +201,92 @@
 .getafter-cta { margin-top: var(--space-xl); display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap; }
 .getafter-note { font-size: 0.9375rem; color: var(--color-muted); max-width: 32ch; }
 
+/* reassurance — «не продающий звонок» */
+.reassure {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklch, var(--color-accent) 7%, var(--color-bg-elev));
+  border: 1px solid color-mix(in oklch, var(--color-accent) 22%, transparent);
+}
+.reassure-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-md);
+}
+.reassure-title em { font-family: var(--font-serif); font-style: italic; color: var(--color-accent); }
+.reassure-list { display: grid; gap: 12px; }
+.reassure-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.reassure-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 14px; height: 8px;
+  border-left: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: rotate(-45deg);
+}
+.reassure-list strong { color: var(--color-text-strong); font-weight: 600; }
+
+/* ============================================
+   TONE-LIGHT — светлая секция (ритм, передышка)
+   Перекартирование токенов внутри секции
+   ============================================ */
+.tone-light {
+  --color-bg:          oklch(0.958 0.012 70);
+  --color-bg-elev:     oklch(0.978 0.010 75);
+  --color-bg-card:     oklch(0.995 0.004 80);
+  --color-text:        oklch(0.320 0.020 350);
+  --color-text-strong: oklch(0.180 0.020 350);
+  --color-muted:       oklch(0.480 0.018 350);
+  --color-dim:         oklch(0.600 0.016 350);
+  --color-line:        oklch(0.885 0.012 70);
+  --color-line-soft:   oklch(0.930 0.010 72);
+  --color-accent:      oklch(0.560 0.200 28);   /* глубже — контраст на светлом */
+  --color-accent-soft: oklch(0.600 0.190 30);
+  background: var(--color-bg) !important;
+  color: var(--color-text);
+}
+.tone-light.getafter {
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklch, var(--color-accent) 9%, transparent), transparent 55%),
+    var(--color-bg) !important;
+  border-top: none;
+}
+/* мягкие скруглённые края светлого острова */
+.tone-light { border-radius: 0; }
+
+/* ============================================
+   IMAGE VARIETY — уйти от «одинаковой AI-обработки»
+   Разные тон/контраст по позициям
+   ============================================ */
+.mood-item:nth-child(2) img { filter: grayscale(0.9) contrast(1.08) brightness(0.95); }
+.mood-item:nth-child(2)::after {
+  background: linear-gradient(180deg, color-mix(in oklch, var(--color-accent) 22%, transparent), color-mix(in oklch, var(--color-bg) 50%, transparent));
+  mix-blend-mode: multiply;
+}
+.mood-item:nth-child(3) img { filter: saturate(1.25) contrast(1.05) hue-rotate(-6deg); }
+.mood-item:nth-child(4) img { filter: grayscale(1) contrast(1.12); }
+.mood-item:nth-child(4)::after {
+  background: linear-gradient(180deg, color-mix(in oklch, var(--color-gold) 16%, transparent), color-mix(in oklch, var(--color-bg) 55%, transparent));
+  mix-blend-mode: screen;
+}
+.mood-item:nth-child(5) img { filter: saturate(0.85) brightness(1.05) contrast(1.04); }
+
+/* team — лёгкая вариативность, без «штампа» */
+.person-card:nth-child(2) .person-photo img { filter: grayscale(0.7) contrast(1.05); }
+.person-card:nth-child(4) .person-photo img { filter: saturate(1.15) contrast(1.03); }
+.person-card:nth-child(2):hover .person-photo img,
+.person-card:nth-child(4):hover .person-photo img { filter: saturate(1.1); }
+
 /* ============================================
    MODAL — лид-форма (короткая анкета)
    ============================================ */
