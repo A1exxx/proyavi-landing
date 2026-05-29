@@ -12,6 +12,7 @@ import {
   initMagneticLite,
   initScrollProgress,
   initParallax,
+  initStickyCta,
 } from './interactions.js';
 
 function boot() {
@@ -27,6 +28,7 @@ function boot() {
   initMagneticLite();
   initScrollProgress();
   initParallax();
+  initStickyCta();
 
   const yearEl = document.querySelector('#current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();

@@ -11,89 +11,64 @@ const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isFinePointer  = matchMedia('(pointer: fine)').matches;
 const isTouchDevice  = matchMedia('(hover: none)').matches;
 
-/* ============= 1) BEFORE / AFTER SLIDER ============= */
+/* ============= 1) BEFORE / AFTER — SCROLL-LINKED AUTO-WIPE =============
+ * Кадр сам «протирается» с «было» → «стало» по мере прохождения через вьюпорт.
+ * pointer-events: none на всём → касание НИКОГДА не захватывается → скролл на
+ * телефоне работает нативно (фикс жалобы пользователя на залипание).
+ */
 
 export function initBeforeAfter() {
-  const sliders = document.querySelectorAll('.case-photo-pair');
-  if (!sliders.length) return;
+  const cards = document.querySelectorAll('.case-photo-pair');
+  if (!cards.length) return;
 
-  sliders.forEach((root) => {
-    const before = root.querySelector('.case-img-before');
-    const after  = root.querySelector('.case-img-after');
-    if (!before || !after) return;
+  // reduced-motion: сразу показываем «стало»
+  if (prefersReduced) {
+    cards.forEach((c) => c.style.setProperty('--split', '100%'));
+    return;
+  }
 
-    // Inject handle (visible knob)
-    const handle = document.createElement('div');
-    handle.className = 'case-handle';
-    handle.innerHTML = '<span class="case-handle-knob" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 4 11 8 16"></polyline><polyline points="14 6 18 11 14 16"></polyline></svg></span>';
-    handle.setAttribute('role', 'slider');
-    handle.setAttribute('aria-valuemin', '0');
-    handle.setAttribute('aria-valuemax', '100');
-    handle.setAttribute('aria-valuenow', '50');
-    handle.tabIndex = 0;
-    root.appendChild(handle);
+  // активные (видимые) карточки — обновляем только их
+  const active = new Set();
 
-    let percent = 50;
-    function setPercent(p) {
-      percent = Math.max(2, Math.min(98, p));
-      root.style.setProperty('--split', `${percent}%`);
-      handle.setAttribute('aria-valuenow', String(Math.round(percent)));
-    }
-    setPercent(50);
-
-    let dragging = false;
-
-    function pointerToPercent(clientX) {
-      const rect = root.getBoundingClientRect();
-      return ((clientX - rect.left) / rect.width) * 100;
-    }
-
-    function onDown(e) {
-      dragging = true;
-      root.classList.add('is-dragging');
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      setPercent(pointerToPercent(x));
-      e.preventDefault();
-    }
-    function onMove(e) {
-      if (!dragging) return;
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      setPercent(pointerToPercent(x));
-    }
-    function onUp() {
-      dragging = false;
-      root.classList.remove('is-dragging');
-    }
-
-    handle.addEventListener('mousedown', onDown);
-    root.addEventListener('mousedown', onDown);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
-
-    handle.addEventListener('touchstart', onDown, { passive: false });
-    root.addEventListener('touchstart', onDown, { passive: false });
-    window.addEventListener('touchmove', onMove, { passive: true });
-    window.addEventListener('touchend', onUp);
-
-    handle.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft')  setPercent(percent - 4);
-      if (e.key === 'ArrowRight') setPercent(percent + 4);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) active.add(e.target);
+      else active.delete(e.target);
     });
+    if (active.size) requestTick();
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 
-    // Auto-demo: ping the slider when scrolled into view
-    if (!prefersReduced) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            root.classList.add('is-demo');
-            setTimeout(() => root.classList.remove('is-demo'), 2200);
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      io.observe(root);
-    }
+  cards.forEach((c) => {
+    c.style.setProperty('--split', '0%');
+    io.observe(c);
   });
+
+  let ticking = false;
+  function requestTick() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+    active.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      // progress: 0 когда карточка только входит снизу, 1 когда уходит сверху.
+      // «Рабочая зона» — пока центр карточки идёт от 85% до 35% высоты экрана.
+      const center = rect.top + rect.height / 2;
+      const raw = (vh * 0.85 - center) / (vh * 0.5);
+      const p = Math.max(0, Math.min(1, raw));
+      // ease-in-out для мягкости
+      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      card.style.setProperty('--split', (eased * 100).toFixed(1) + '%');
+    });
+  }
+
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', requestTick, { passive: true });
+  update();
 }
 
 /* ============= 2) CURSOR-REACTIVE HERO BLOB ============= */
@@ -207,5 +182,31 @@ export function initParallax() {
   }
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update, { passive: true });
+  update();
+}
+
+/* ============= 7) STICKY MOBILE CTA — показывать после hero, прятать у формы ============= */
+
+export function initStickyCta() {
+  const cta = document.querySelector('#sticky-cta');
+  const hero = document.querySelector('.hero');
+  const form = document.querySelector('#form');
+  if (!cta || !hero) return;
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    let nearForm = false;
+    if (form) {
+      const r = form.getBoundingClientRect();
+      nearForm = r.top < window.innerHeight && r.bottom > 0;
+    }
+    // показываем когда hero ушёл вверх и мы не на форме
+    cta.classList.toggle('is-visible', heroBottom < 0 && !nearForm);
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
   update();
 }

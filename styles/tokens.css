@@ -28,13 +28,25 @@
   --color-line-soft:    rgb(42 36 32);
   --color-line-soft:    oklch(0.252 0.012 55);
 
-  /* SINGLE WARM ACCENT — terracotta */
-  --color-accent:       rgb(201 98 74);
-  --color-accent:       oklch(0.620 0.135 38);          /* terracotta */
-  --color-accent-soft:  rgb(217 119 87);
-  --color-accent-soft:  oklch(0.680 0.140 38);          /* warmer terracotta */
-  --color-accent-deep:  rgb(159 70 50);
-  --color-accent-deep:  oklch(0.510 0.135 35);          /* deeper rust */
+  /* PRIMARY WARM ACCENT — terracotta */
+  --color-accent:       rgb(216 104 76);
+  --color-accent:       oklch(0.655 0.150 38);          /* terracotta — brighter than v5 */
+  --color-accent-soft:  rgb(232 128 94);
+  --color-accent-soft:  oklch(0.715 0.150 40);          /* warmer terracotta */
+  --color-accent-deep:  rgb(168 72 50);
+  --color-accent-deep:  oklch(0.525 0.140 35);          /* deeper rust */
+
+  /* SECOND ACCENT — champagne gold (creative warmth + brighter contrast) */
+  --color-gold:         rgb(224 164 92);
+  --color-gold:         oklch(0.770 0.110 70);          /* champagne gold */
+  --color-gold-soft:    rgb(238 192 132);
+  --color-gold-soft:    oklch(0.840 0.090 78);          /* light gold */
+
+  /* GLOW tokens — richer, brighter */
+  --glow-warm:    0 0 80px color-mix(in oklch, var(--color-accent) 55%, transparent);
+  --glow-gold:    0 0 60px color-mix(in oklch, var(--color-gold) 50%, transparent);
+  --gradient-accent: linear-gradient(105deg, var(--color-accent-soft) 0%, var(--color-gold) 100%);
+  --gradient-accent-radial: radial-gradient(circle at 30% 30%, var(--color-gold-soft), var(--color-accent) 55%, var(--color-accent-deep) 100%);
 
   /* Aliases */
   --color-cta:                  var(--color-text-strong);
