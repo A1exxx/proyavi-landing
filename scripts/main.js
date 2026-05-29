@@ -5,6 +5,7 @@
 
 import { initReveal } from './reveal.js';
 import { initForm } from './form.js';
+import { initVoiceTest } from './leadtest.js';
 import {
   initBeforeAfter,
   initModal,
@@ -39,6 +40,7 @@ function boot() {
   initScrollProgress();
   initParallax();
   initStickyCta();
+  initVoiceTest();
 
   const yearEl = document.querySelector('#current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();

@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="styles/sections.css">
   <link rel="stylesheet" href="styles/animations.css">
   <link rel="stylesheet" href="styles/v7.css">
+  <link rel="stylesheet" href="styles/v8.css">
 
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314110E'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%23C9624A'/%3E%3C/svg%3E">
@@ -93,6 +94,29 @@
             <span class="arrow" aria-hidden="true">→</span>
           </a>
           <p class="hero-micro">Бесплатно · онлайн · без обязательств</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== STATS BAR — доверие, опытные преподаватели ====================== -->
+    <!-- PLACEHOLDER: впишите реальные цифры -->
+    <section class="stats" aria-label="О школе в цифрах">
+      <div class="container-wide stats-grid" data-reveal-stagger>
+        <div class="stat">
+          <span class="stat-num" data-placeholder>12<span class="stat-plus">+</span></span>
+          <span class="stat-label">лет средний опыт<br>преподавателей</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-placeholder>6</span>
+          <span class="stat-label">направлений работы<br>с голосом и собой</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-placeholder>500<span class="stat-plus">+</span></span>
+          <span class="stat-label">учеников<br>прошли путь с нами</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">онлайн —<br>из любой точки мира</span>
         </div>
       </div>
     </section>
@@ -316,8 +340,8 @@
     <section class="team" id="team">
       <div class="container-wide">
         <div class="team-header" data-reveal>
-          <h2>Люди, которые умеют слышать <em>ещё не сказанное</em></h2>
-          <p class="lead">Команда — не один лицевой бренд, а несколько практиков с разными подходами. Под тебя подбираем тех, с кем стартует лучше всего.</p>
+          <h2>Опытные преподаватели, которые умеют слышать <em>ещё не сказанное</em></h2>
+          <p class="lead">Не один лицевой бренд, а команда практикующих специалистов — действующие музыканты, психологи и кураторы с многолетним опытом. Под тебя подбираем тех, с кем стартует лучше всего.</p>
         </div>
 
         <div class="team-grid" data-reveal-stagger>
@@ -518,6 +542,106 @@
       </div>
     </section>
 
+    <!-- ====================== LEAD MAGNET — мини-тест по карте диагностики ====================== -->
+    <section class="voicetest" id="test" aria-labelledby="voicetest-title">
+      <div class="container">
+        <div class="voicetest-head" data-reveal>
+          <span class="eyebrow">Бесплатно · 2 минуты</span>
+          <h2 id="voicetest-title">Мини-тест: насколько <em>свободен твой голос</em></h2>
+          <p>Оцени каждое утверждение по шкале — насколько это про тебя сейчас. В конце увидишь свою карту и поймёшь, с чего начинать.</p>
+        </div>
+
+        <form class="voicetest-body" id="voicetest" data-reveal>
+          <ol class="vt-list">
+            <li class="vt-row" data-key="voice">
+              <span class="vt-q">Мой голос звучит так, как я хочу — свободно, без зажима</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+            <li class="vt-row" data-key="body">
+              <span class="vt-q">Когда говорю или пою — тело свободно, я не зажимаюсь</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+            <li class="vt-row" data-key="self">
+              <span class="vt-q">Я слышу себя — понимаю, что хочу сказать и выразить</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+            <li class="vt-row" data-key="express">
+              <span class="vt-q">Легко выражаю себя — словом, голосом, в общении</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+            <li class="vt-row" data-key="bounds">
+              <span class="vt-q">Чужое мнение не парализует — я делаю своё</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+            <li class="vt-row" data-key="public">
+              <span class="vt-q">Свободно выступаю / говорю на людях / в кадре</span>
+              <span class="vt-scale" role="radiogroup" aria-label="Оценка">
+                <button type="button" class="vt-dot" data-v="1" aria-label="1"></button>
+                <button type="button" class="vt-dot" data-v="2" aria-label="2"></button>
+                <button type="button" class="vt-dot" data-v="3" aria-label="3"></button>
+                <button type="button" class="vt-dot" data-v="4" aria-label="4"></button>
+                <button type="button" class="vt-dot" data-v="5" aria-label="5"></button>
+              </span>
+            </li>
+          </ol>
+
+          <div class="vt-actions">
+            <button type="button" class="btn btn-primary btn-lg" id="vt-submit" disabled>
+              <span>Показать мою карту голоса</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </button>
+            <span class="vt-progress" id="vt-progress">Отметь 6 утверждений</span>
+          </div>
+        </form>
+
+        <div class="voicetest-result" id="vt-result" hidden>
+          <div class="vt-score">
+            <span class="vt-score-num" id="vt-score-num">—</span>
+            <span class="vt-score-of">/ 5</span>
+          </div>
+          <h3 class="vt-verdict" id="vt-verdict"></h3>
+          <p class="vt-teaser">Это лишь грубая прикидка по 6 параметрам. <strong>Полную карту голоса, точку зажима и персональный план</strong> куратор соберёт с тобой на бесплатной диагностике — и пришлёт тебе.</p>
+          <div class="vt-cta">
+            <a href="#form" class="btn btn-primary btn-lg" data-modal data-magnetic>
+              <span>Получить полную карту голоса</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <button type="button" class="btn btn-ghost" id="vt-retry">Пройти заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ====================== WHAT YOU GET — lead magnet (light zone) ====================== -->
     <section class="getafter tone-light" id="getafter">
       <div class="container-wide">
@@ -658,6 +782,18 @@
             <details class="faq-item">
               <summary>Я никогда не пел / у меня нет голоса. Подходит?</summary>
               <div class="faq-item-content">Подходит, и часто именно тебе. У всех есть голос. «Нет голоса» — это «не разрешил себе звучать». С этого как раз и начинаем.</div>
+            </details>
+            <details class="faq-item">
+              <summary>А вдруг у меня нет слуха?</summary>
+              <div class="faq-item-content">«Нет слуха» почти всегда означает «никто не помогал его развить». Слух и интонация ставятся — это навык, а не дар. На диагностике как раз и услышим, с чего тебе начинать.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Я стесняюсь — даже на звонке будет неловко.</summary>
+              <div class="faq-item-content">На диагностике не нужно петь и ничего «показывать». Это спокойный разговор: куратор задаёт вопросы и слушает. Стеснение — то, с чем мы как раз работаем, а не то, за что оценивают.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Это эзотерика / «раскрытие чакр»?</summary>
+              <div class="faq-item-content">Нет. В основе — вокальная техника, работа с дыханием и телом, сценическая речь и практическая психология. «Проявленность» здесь — про живой свободный голос и уверенность, а не про мистику.</div>
             </details>
             <details class="faq-item">
               <summary>Я хочу работать с одним специалистом, не с командой. Так можно?</summary>
@@ -822,6 +958,17 @@
     Бесплатная диагностика <span aria-hidden="true">→</span>
   </a>
 
+  <!-- ====================== MESSENGER WIDGETS ====================== -->
+  <!-- PLACEHOLDER: подставьте реальные ссылки TG/WhatsApp -->
+  <div class="msg-widgets" aria-label="Связаться в мессенджере">
+    <a class="msg-btn msg-tg" href="https://t.me/" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.9 9-8.1c.4-.3-.1-.5-.6-.2L6.4 13.2l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.4 1.3z"/></svg>
+    </a>
+    <a class="msg-btn msg-wa" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 6.9c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-3-.4-4.3-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.3 8.3 0 1 1 12 20.3z"/></svg>
+    </a>
+  </div>
+
   <!-- ====================== FOOTER ====================== -->
   <footer class="site-footer">
     <div class="footer-inner">
@@ -854,16 +1001,16 @@
         <div class="footer-col">
           <h4>Юридическое</h4>
           <ul>
-            <li><a href="#">Политика конфиденциальности</a></li>
-            <li><a href="#">Договор оферты</a></li>
-            <li>Зарегистрировано в Таиланде</li>
+            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            <li><a href="privacy.html#offer">Договор оферты</a></li>
+            <li><a href="privacy.html#requisites">Реквизиты</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-copyright">
-        <span>© <span id="current-year">2026</span> Прояви</span>
-        <span>Bangkok</span>
+        <span>© <span id="current-year">2026</span> Прояви · международная программа</span>
+        <span>Зарегистрировано в Таиланде <!-- PLACEHOLDER: реквизиты юрлица --></span>
       </div>
     </div>
   </footer>

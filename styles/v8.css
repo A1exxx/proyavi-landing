@@ -1,0 +1,192 @@
+/* ============================================
+   v8.css — stats bar · voice mini-test (lead magnet) · messenger widgets
+   Loaded last.
+   ============================================ */
+
+/* ============================================
+   STATS BAR
+   ============================================ */
+.stats {
+  border-bottom: 1px solid var(--color-line);
+  padding-block: var(--space-xl);
+  background: var(--color-bg-elev);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+@media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); } }
+
+.stat { display: flex; flex-direction: column; gap: 8px; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-strong);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.stat-plus { -webkit-text-fill-color: currentColor; }
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.35;
+}
+
+/* ============================================
+   VOICE MINI-TEST — lead magnet
+   ============================================ */
+.voicetest {
+  padding-block: var(--space-section);
+  border-top: 1px solid var(--color-line);
+  background:
+    radial-gradient(110% 80% at 0% 0%, color-mix(in oklch, var(--color-gold) 8%, transparent), transparent 55%),
+    var(--color-bg);
+}
+.voicetest-head { max-width: 60ch; margin-bottom: var(--space-xl); }
+.voicetest-head h2 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: var(--ls-tight);
+  font-weight: 500;
+  margin-top: var(--space-md);
+}
+.voicetest-head h2 em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--color-accent-soft); }
+.voicetest-head p { margin-top: var(--space-md); font-size: var(--fs-lead); color: var(--color-muted); }
+
+.vt-list { display: grid; gap: 4px; }
+.vt-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-line);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.vt-q {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 1.8vw, 1.375rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-snug);
+  color: var(--color-text);
+  max-width: 40ch;
+}
+.vt-row.is-answered .vt-q { color: var(--color-text-strong); }
+
+.vt-scale { display: inline-flex; gap: 10px; flex-shrink: 0; }
+.vt-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-line);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  position: relative;
+}
+@media (max-width: 560px) { .vt-dot { width: 34px; height: 34px; } }
+.vt-dot:hover { border-color: var(--color-accent-soft); transform: scale(1.1); }
+.vt-dot.is-on {
+  background: var(--gradient-accent);
+  border-color: transparent;
+  box-shadow: 0 0 14px color-mix(in oklch, var(--color-accent) 45%, transparent);
+}
+
+@media (max-width: 640px) {
+  .vt-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+.vt-actions {
+  margin-top: var(--space-xl);
+  display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap;
+}
+.vt-progress { font-family: var(--font-body); font-size: 0.875rem; color: var(--color-muted); }
+#vt-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* result */
+.voicetest-result {
+  margin-top: var(--space-md);
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklch, var(--color-accent) 25%, transparent);
+  background:
+    radial-gradient(120% 100% at 100% 0%, color-mix(in oklch, var(--color-accent) 12%, transparent), transparent 60%),
+    var(--color-bg-card);
+}
+.vt-score { display: flex; align-items: baseline; gap: 8px; margin-bottom: var(--space-sm); }
+.vt-score-num {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 6rem);
+  font-weight: 600;
+  line-height: 0.85;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.vt-score-of { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-dim); }
+.vt-verdict {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.6vw, 2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--ls-snug);
+  color: var(--color-text-strong);
+  max-width: 42ch;
+  margin-bottom: var(--space-md);
+}
+.vt-teaser { font-size: 1.0625rem; color: var(--color-muted); line-height: 1.6; max-width: 52ch; margin-bottom: var(--space-lg); }
+.vt-teaser strong { color: var(--color-text-strong); font-weight: 500; }
+.vt-cta { display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+
+/* ============================================
+   MESSENGER WIDGETS
+   ============================================ */
+.msg-widgets {
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  z-index: var(--z-sticky);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.msg-btn {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.4);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.msg-btn svg { width: 28px; height: 28px; }
+.msg-btn:hover { transform: scale(1.1) translateY(-2px); color: #fff; }
+.msg-tg { background: linear-gradient(135deg, #2aabee, #229ed9); }
+.msg-wa { background: linear-gradient(135deg, #5ad365, #25d366); }
+.msg-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 color-mix(in oklch, currentColor 40%, transparent);
+  animation: msg-pulse 2.6s ease-out infinite;
+}
+@keyframes msg-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(37 211 102 / 0.4); }
+  70% { box-shadow: 0 0 0 14px rgb(37 211 102 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(37 211 102 / 0); }
+}
+@media (prefers-reduced-motion: reduce) { .msg-btn::after { animation: none; } }
+
+/* на мобиле поднять над sticky-cta */
+@media (max-width: 768px) {
+  .msg-widgets { right: 14px; bottom: 86px; flex-direction: row; }
+  .msg-btn { width: 48px; height: 48px; }
+  .msg-btn svg { width: 24px; height: 24px; }
+}
