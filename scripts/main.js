@@ -41,9 +41,27 @@ function boot() {
   initParallax();
   initStickyCta();
   initVoiceTest();
+  initLiveDemo();
 
   const yearEl = document.querySelector('#current-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+// Live-демо тренажёра «Распевка»: iframe грузится ТОЛЬКО по клику —
+// страница остаётся лёгкой, а микрофон запрашивается осознанным жестом.
+function initLiveDemo() {
+  const btn = document.getElementById('livedemo-start');
+  const frame = document.getElementById('livedemo-frame');
+  if (!btn || !frame) return;
+  btn.addEventListener('click', () => {
+    const ifr = document.createElement('iframe');
+    ifr.src = 'https://a1exxx.github.io/raspevka/demo.html';
+    ifr.allow = 'microphone';
+    ifr.title = 'Демо тренажёра «Распевка»: спой ноту — увидь её';
+    frame.classList.add('is-live');
+    frame.innerHTML = '';
+    frame.appendChild(ifr);
+  });
 }
 
 function initNavBehavior() {
